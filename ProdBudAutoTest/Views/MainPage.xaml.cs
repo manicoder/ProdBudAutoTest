@@ -1,4 +1,7 @@
-﻿namespace ProdBudAutoTest.Views
+﻿using System.Reflection;
+using Xamarin.Forms;
+
+namespace ProdBudAutoTest.Views
 {
     public partial class MainPage
     {

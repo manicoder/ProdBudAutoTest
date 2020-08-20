@@ -5,7 +5,16 @@
              Title="{Binding Title}">
 
     <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-        <Label Text="Welcome to Xamarin Forms and Prism!" />
+        <Label Style="{StaticResource Title}" Text="Welcome to Xamarin Forms and Prism!" />
+        <Label Style="{StaticResource TitleBold}" Text="Welcome to Xamarin Forms and Prism!" FontFamily="FontRegular"/>
+        <Image Source="logo.png" HeightRequest="100" WidthRequest="100" 
+               HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+        <Label Text="Welcome to Xamarin.Forms!" 
+    FontFamily="FontRegular" FontSize="50" 
+    HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+        <Label Text="Welcome to Xamarin.Forms!" 
+      FontSize="50" 
+    HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
     </StackLayout>
 
 </ContentPage>

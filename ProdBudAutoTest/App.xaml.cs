@@ -5,7 +5,11 @@ using ProdBudAutoTest.Views;
 using Xamarin.Essentials.Interfaces;
 using Xamarin.Essentials.Implementation;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
+[assembly: ExportFont("Lato-Bold.ttf", Alias = "FontBold")]
+[assembly: ExportFont("Lato-Regular.ttf", Alias = "FontRegular")]
+//[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace ProdBudAutoTest
 {
     public partial class App
