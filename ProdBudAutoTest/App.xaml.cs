@@ -9,6 +9,7 @@ using Xamarin.Forms.Xaml;
 
 [assembly: ExportFont("Lato-Bold.ttf", Alias = "FontBold")]
 [assembly: ExportFont("Lato-Regular.ttf", Alias = "FontRegular")]
+[assembly: ExportFont("Lato-Light.ttf", Alias = "FontLight")]
 //[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace ProdBudAutoTest
 {
@@ -23,7 +24,7 @@ namespace ProdBudAutoTest
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("NavigationPage/MainPage");
+            await NavigationService.NavigateAsync("NavigationPage/CheckOperationPage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -32,6 +33,7 @@ namespace ProdBudAutoTest
 
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
+            containerRegistry.RegisterForNavigation<CheckOperationPage, CheckOperationPageViewModel>();
         }
     }
 }
