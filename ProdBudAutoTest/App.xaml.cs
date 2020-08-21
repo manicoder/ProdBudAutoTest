@@ -10,6 +10,7 @@ using Xamarin.Forms.Xaml;
 [assembly: ExportFont("Lato-Bold.ttf", Alias = "FontBold")]
 [assembly: ExportFont("Lato-Regular.ttf", Alias = "FontRegular")]
 [assembly: ExportFont("Lato-Light.ttf", Alias = "FontLight")]
+[assembly: ExportFont("Lato-Black.ttf", Alias = "FontExtraBold")]
 //[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace ProdBudAutoTest
 {

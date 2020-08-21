@@ -16,7 +16,7 @@ namespace ProdBudAutoTest.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
-
+            this.RequestedOrientation = ScreenOrientation.Portrait;
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App(new AndroidInitializer()));
         }

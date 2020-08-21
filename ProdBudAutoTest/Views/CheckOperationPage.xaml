@@ -4,19 +4,69 @@
              xmlns:prism="http://prismlibrary.com" xmlns:controls="clr-namespace:ProdBudAutoTest.Controls"
              prism:ViewModelLocator.AutowireViewModel="True" NavigationPage.HasNavigationBar="False"
              x:Class="ProdBudAutoTest.Views.CheckOperationPage" Background="#ffffff">
-    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-        <controls:HeaderView/>
+    <Grid Padding="0,0,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-        <controls:StepsProgressControl/>
+        <controls:HeaderView Grid.Row="0"/>
 
-        <StackLayout HorizontalOptions="FillAndExpand" Padding="10">
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="1" RowSpacing="15" Padding="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <controls:StepsProgressControl Grid.Row="0"/>
+
+            <Label Grid.Row="1" Text="Vehicle Info" FontSize="24" TextColor="#000000"
+               FontFamily="FontExtraBold"/>
+
+            <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0" Grid.Row="2">                
+            
+            <ListView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ItemsSource="{Binding VehicleInfoList}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid HorizontalOptions="FillAndExpand" ColumnSpacing="-1">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="142"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="60"/>
+                                </Grid.ColumnDefinitions>
+                                <Frame Grid.Column="0" HasShadow="False" CornerRadius="0" BorderColor="LightGray" Padding="5,10,5,10" HorizontalOptions="FillAndExpand" >
+                                    <Label Text="{Binding TestType}" LineBreakMode="WordWrap"  Style="{StaticResource TitleNormal}" VerticalOptions="Center"/>
+                                </Frame>
+                                <Frame Grid.Column="1" HasShadow="False" CornerRadius="0" BorderColor="LightGray"  Padding="5,10,5,10" HorizontalOptions="FillAndExpand">
+                                    <Label Text="{Binding Desc}" Style="{StaticResource TitleNormal}" HorizontalOptions="Center"/>
+                                </Frame>
+                                <Frame Grid.Column="2" HasShadow="False" CornerRadius="0" BorderColor="LightGray"  Padding="5,10,5,10" HorizontalOptions="FillAndExpand">
+                                    <Grid HorizontalOptions="Center">
+                                        <Label Text="{Binding Result}" TextColor="Green" FontFamily="FontExtraBold" IsVisible="{Binding IsPass}" Style="{StaticResource TitleNormal}"/>
+                                        <Label Text="{Binding Result}" TextColor="{StaticResource StepLineRedColor}"  FontFamily="FontExtraBold"  Style="{StaticResource TitleNormal}" IsVisible="{Binding IsPass,Converter={StaticResource BoolToReverseVisibilityConverter}}"/>
+                                    </Grid>
+                                </Frame>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+            </Frame>
 
 
-
-
-
-
-            <StackLayout Orientation="Vertical">
+                 <Grid  HorizontalOptions="FillAndExpand" Grid.Row="3" Margin="0,0,0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                <Button Text="Abort" FontFamily="FontExtraBold" HeightRequest="50" TextColor="#ffffff" BackgroundColor="{StaticResource PrimaryColor}" CornerRadius="25"/>
+                <Button Text="Continue >>" FontFamily="FontExtraBold" HeightRequest="50" TextColor="#ffffff" Grid.Column="1" BackgroundColor="OrangeRed" CornerRadius="25"/>
+                </Grid>
+             <!--<StackLayout Orientation="Vertical">
                 <Button Text="1" Command="{Binding StepProgressCommand}" CommandParameter="1"/>
                 <Button Text="2"  Command="{Binding StepProgressCommand}" CommandParameter="2"/>
                 <Button Text="3"  Command="{Binding StepProgressCommand}" CommandParameter="3"/>
@@ -24,12 +74,11 @@
                 <Button  Text="5"  Command="{Binding StepProgressCommand}" CommandParameter="5"/>
                 <Button  Text="6"  Command="{Binding StepProgressCommand}" CommandParameter="6"/>
 
-            </StackLayout>
-
-            <StackLayout >
+            </StackLayout>-->
 
 
-            </StackLayout>
-        </StackLayout>
-    </StackLayout>
+        </Grid>
+
+
+    </Grid>
 </ContentPage>

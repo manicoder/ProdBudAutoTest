@@ -4,7 +4,7 @@
              x:Class="ProdBudAutoTest.Controls.HeaderView">
     <ContentView.Content>
         <StackLayout HorizontalOptions="FillAndExpand" Spacing="0">
-            <StackLayout HorizontalOptions="FillAndExpand" HeightRequest="100" Spacing="0" BackgroundColor="Orange">
+            <StackLayout HorizontalOptions="FillAndExpand" HeightRequest="100" Spacing="0" BackgroundColor="{StaticResource PrimaryColor}">
                 <BoxView  HeightRequest="36"/>
                 <Grid HorizontalOptions="FillAndExpand" ColumnSpacing="10" Padding="10,0,10,0"
                       VerticalOptions="End">

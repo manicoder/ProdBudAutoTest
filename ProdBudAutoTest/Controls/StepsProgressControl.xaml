@@ -60,7 +60,7 @@
                     </Grid>
                 </Grid>
 
-                <Label FontSize="11" Text="Vehicle Info" LineBreakMode="WordWrap" FontFamily="FontLight"
+                <Label FontSize="11" Text="Vehicle Info" LineBreakMode="WordWrap" FontFamily="FontNormal"
                            TextColor="#000000" HorizontalTextAlignment="Center"/>
             </StackLayout>
 
@@ -112,7 +112,7 @@
                 </Grid>
 
 
-                <Label Text="Error Reading"  FontSize="11"   LineBreakMode="WordWrap" FontFamily="FontLight"
+                <Label Text="Error Reading"  FontSize="11"   LineBreakMode="WordWrap" FontFamily="FontNormal"
                            TextColor="#000000" HorizontalTextAlignment="Center"/>
             </StackLayout>
 
@@ -156,7 +156,7 @@
                         </Grid.ColumnDefinitions>
                         <BoxView Margin="0,0,-2,0" Grid.Column="0" HeightRequest="10" BackgroundColor="{StaticResource StepLineGrayColor}" VerticalOptions="Center" HorizontalOptions="FillAndExpand"/>
                         <Frame Grid.Column="1" CornerRadius="15" BackgroundColor="{StaticResource StepLineGrayColor}" BorderColor="{StaticResource StepLineGrayColor}" HorizontalOptions="Center" HeightRequest="30" WidthRequest="30" Padding="0" HasShadow="False">
-                            <Label Text="2" FontFamily="FontBold" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            <Label Text="3" FontFamily="FontBold" HorizontalOptions="Center" VerticalOptions="Center"/>
                         </Frame>
                         <BoxView Margin="-2,0,0,0" Grid.Column="2" HeightRequest="10" BackgroundColor="{StaticResource StepLineGrayColor}" VerticalOptions="Center" HorizontalOptions="FillAndExpand"/>
 
@@ -166,7 +166,7 @@
 
 
 
-                <Label Text="Switch Function"  FontSize="11"   LineBreakMode="WordWrap" FontFamily="FontLight"
+                <Label Text="Switch Function"  FontSize="11"   LineBreakMode="WordWrap" FontFamily="FontNormal"
                            TextColor="#000000" HorizontalTextAlignment="Center"/>
             </StackLayout>
 
@@ -210,7 +210,7 @@
                         </Grid.ColumnDefinitions>
                         <BoxView Margin="0,0,-2,0" Grid.Column="0" HeightRequest="10" BackgroundColor="{StaticResource StepLineGrayColor}" VerticalOptions="Center" HorizontalOptions="FillAndExpand"/>
                         <Frame Grid.Column="1" CornerRadius="15" BackgroundColor="{StaticResource StepLineGrayColor}" BorderColor="{StaticResource StepLineGrayColor}" HorizontalOptions="Center" HeightRequest="30" WidthRequest="30" Padding="0" HasShadow="False">
-                            <Label Text="2" FontFamily="FontBold" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            <Label Text="4" FontFamily="FontBold" HorizontalOptions="Center" VerticalOptions="Center"/>
                         </Frame>
                         <BoxView Margin="-2,0,0,0" Grid.Column="2" HeightRequest="10" BackgroundColor="{StaticResource StepLineGrayColor}" VerticalOptions="Center" HorizontalOptions="FillAndExpand"/>
 
@@ -219,7 +219,7 @@
 
 
 
-                <Label Text="Parameter Check"  FontSize="11"   LineBreakMode="WordWrap" FontFamily="FontLight"
+                <Label Text="Parameter Check"  FontSize="11"   LineBreakMode="WordWrap" FontFamily="FontNormal"
                            TextColor="#000000" HorizontalTextAlignment="Center"/>
             </StackLayout>
 
@@ -263,7 +263,7 @@
                         </Grid.ColumnDefinitions>
                         <BoxView Margin="0,0,-2,0" Grid.Column="0" HeightRequest="10" BackgroundColor="{StaticResource StepLineGrayColor}" VerticalOptions="Center" HorizontalOptions="FillAndExpand"/>
                         <Frame Grid.Column="1" CornerRadius="15" BackgroundColor="{StaticResource StepLineGrayColor}" BorderColor="{StaticResource StepLineGrayColor}" HorizontalOptions="Center" HeightRequest="30" WidthRequest="30" Padding="0" HasShadow="False">
-                            <Label Text="2" FontFamily="FontBold" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            <Label Text="5" FontFamily="FontBold" HorizontalOptions="Center" VerticalOptions="Center"/>
                         </Frame>
                         <BoxView Margin="-2,0,0,0" Grid.Column="2" HeightRequest="10" BackgroundColor="{StaticResource StepLineGrayColor}" VerticalOptions="Center" HorizontalOptions="FillAndExpand"/>
 
@@ -271,7 +271,7 @@
                 </Grid>
 
 
-                <Label Text="Error Re-Verify"  FontSize="11"   LineBreakMode="WordWrap" FontFamily="FontLight"
+                <Label Text="Error Re-Verify"  FontSize="11"   LineBreakMode="WordWrap" FontFamily="FontNormal"
                            TextColor="#000000" HorizontalTextAlignment="Center"/>
             </StackLayout>
            
@@ -289,7 +289,7 @@
                         </Grid.ColumnDefinitions>
                         <BoxView Margin="0,0,-2,0" Grid.Column="0" HeightRequest="10" BackgroundColor="{StaticResource StepLineColor}" VerticalOptions="Center" HorizontalOptions="FillAndExpand"/>
                         <Image Grid.Column="1" Source="success" Aspect="AspectFit" HorizontalOptions="Center" HeightRequest="30" WidthRequest="30"/>
-                        <BoxView Margin="-2,0,0,0" Grid.Column="2" HeightRequest="10" BackgroundColor="{StaticResource StepLineColor}" VerticalOptions="Center" HorizontalOptions="FillAndExpand"/>
+                        <!--<BoxView Margin="-2,0,0,0" Grid.Column="2" HeightRequest="10" BackgroundColor="{StaticResource StepLineColor}" VerticalOptions="Center" HorizontalOptions="FillAndExpand"/>-->
 
                     </Grid>
 
@@ -302,7 +302,7 @@
                         </Grid.ColumnDefinitions>
                         <BoxView Margin="0,0,-2,0" Grid.Column="0" HeightRequest="10" BackgroundColor="{StaticResource StepLineRedColor}" VerticalOptions="Center" HorizontalOptions="FillAndExpand"/>
                         <Image Grid.Column="1" Source="fail" Aspect="AspectFit" HorizontalOptions="Center" HeightRequest="30" WidthRequest="30"/>
-                        <BoxView Margin="-2,0,0,0" Grid.Column="2" HeightRequest="10" BackgroundColor="{StaticResource StepLineRedColor}" VerticalOptions="Center" HorizontalOptions="FillAndExpand"/>
+                        <!--<BoxView Margin="-2,0,0,0" Grid.Column="2" HeightRequest="10" BackgroundColor="{StaticResource StepLineRedColor}" VerticalOptions="Center" HorizontalOptions="FillAndExpand"/>-->
 
                     </Grid>
 
@@ -315,16 +315,16 @@
                         </Grid.ColumnDefinitions>
                         <BoxView Margin="0,0,-2,0" Grid.Column="0" HeightRequest="10" BackgroundColor="{StaticResource StepLineGrayColor}" VerticalOptions="Center" HorizontalOptions="FillAndExpand"/>
                         <Frame Grid.Column="1" CornerRadius="15" BackgroundColor="{StaticResource StepLineGrayColor}" BorderColor="{StaticResource StepLineGrayColor}" HorizontalOptions="Center" HeightRequest="30" WidthRequest="30" Padding="0" HasShadow="False">
-                            <Label Text="2" FontFamily="FontBold" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            <Label Text="6" FontFamily="FontBold" HorizontalOptions="Center" VerticalOptions="Center"/>
                         </Frame>
-                        <BoxView Margin="-2,0,0,0" Grid.Column="2" HeightRequest="10" BackgroundColor="{StaticResource StepLineGrayColor}" VerticalOptions="Center" HorizontalOptions="FillAndExpand"/>
+                        <!--<BoxView Margin="0,0,0,0" Grid.Column="2" HeightRequest="10" BackgroundColor="{StaticResource StepLineGrayColor}" VerticalOptions="Center" HorizontalOptions="FillAndExpand"/>-->
 
                     </Grid>
                 </Grid>
 
 
 
-                <Label Text="Result"  FontSize="11"  LineBreakMode="WordWrap" FontFamily="FontLight"
+                <Label Text="Result"  FontSize="11"  LineBreakMode="WordWrap" FontFamily="FontNormal"
                            TextColor="#000000" HorizontalTextAlignment="Center"/>
             </StackLayout>
 

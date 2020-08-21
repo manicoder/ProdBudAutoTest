@@ -5,17 +5,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Fonts\Lato-Black.ttf" />
     <None Remove="Resources\Fonts\Lato-Bold.ttf" />
+    <None Remove="Resources\Fonts\Lato-Light.ttf" />
     <None Remove="Resources\Fonts\Lato-Regular.ttf" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Resources\Fonts\Lato-Black.ttf" />
     <EmbeddedResource Include="Resources\Fonts\Lato-Bold.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Lato-Light.ttf" />
     <EmbeddedResource Include="Resources\Fonts\Lato-Regular.ttf" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1269" />
+     <PackageReference Include="Xamarin.Forms" Version="4.8.0.1269" />
     <PackageReference Include="Xamarin.Essentials.Interfaces" Version="1.5.3.2" />
     <PackageReference Include="Prism.Unity.Forms" Version="7.2.0.1422" />
   </ItemGroup>
