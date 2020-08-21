@@ -1,0 +1,62 @@
+﻿pl<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com" xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms" xmlns:local="clr-namespace:ProdBudAutoTest.Controls"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="ProdBudAutoTest.Views.BarcodeScanPage" NavigationPage.HasNavigationBar="False" BackgroundColor="White">
+
+    
+    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Start"
+              BackgroundColor="{StaticResource PrimaryColor}" HeightRequest="90">
+            <Label Text="Get Model" VerticalOptions="End" HorizontalOptions="Center" TextColor="White"
+                   FontSize="20" Style="{StaticResource TitleBold}" Margin="0,0,0,22"/>
+        </Grid>
+
+
+
+        <Frame Grid.Row="1" HasShadow="False" Margin="20" Padding="5,2,5,2" BorderColor="{StaticResource PrimaryColor}" CornerRadius="0">
+            <local:CustomEntry Text="{Binding LoginId}" Placeholder="Enter VIN"  FontFamily="FontRegular" FontSize="20"/>
+        </Frame>
+
+        <Label Grid.Row="2" Margin="20,0,20,20" Text="Or Hover your camera on VIN barcode" HorizontalOptions="Center" Style="{StaticResource TitleBold}" FontSize="20" VerticalOptions="Center"/>
+
+
+        <Grid Grid.Row="3" x:Name="scanGrid" BackgroundColor="Red"  
+               RowSpacing="0" ColumnSpacing="0"
+               HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+             <Grid.ColumnDefinitions>
+                 <ColumnDefinition Width="40"/>
+                 <ColumnDefinition Width="*"/>
+                 <ColumnDefinition Width="40"/>
+             </Grid.ColumnDefinitions>
+             <Grid.RowDefinitions>
+                 <RowDefinition Height="30"/>
+                 <RowDefinition Height="*"/>
+                 <RowDefinition Height="30"/>
+             </Grid.RowDefinitions>
+            <zxing:ZXingScannerView Grid.ColumnSpan="3" Grid.RowSpan="3" x:Name="scanView" OnScanResult="Handle_OnScanResult" IsScanning="true"/> 
+             <Grid Grid.Column="1" Grid.Row="1"> 
+                 <Image x:Name="cornerImage" Source="corners.png"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/> 
+             </Grid>
+              <BoxView BackgroundColor="#88000000" Grid.Row="0" Grid.ColumnSpan="3"/>
+             <BoxView BackgroundColor="#88000000" Grid.Row="2" Grid.ColumnSpan="3"/>
+              <BoxView BackgroundColor="#88000000" Grid.Row="1" Grid.Column="0"/>
+              <BoxView BackgroundColor="#88000000" Grid.Row="1" Grid.Column="2"/>
+
+         </Grid>
+
+        <Button Text="Login" Grid.Row="4" Command="{Binding LoginCommand}" Margin="20,20,20,20"
+                FontFamily="FontExtraBold" HeightRequest="50" TextColor="#ffffff" 
+                BackgroundColor="{StaticResource PrimaryColor}" CornerRadius="25"/>
+
+    </Grid>
+</ContentPage>

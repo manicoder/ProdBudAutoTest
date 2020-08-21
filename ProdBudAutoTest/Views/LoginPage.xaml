@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com" xmlns:local="clr-namespace:ProdBudAutoTest.Controls"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="ProdBudAutoTest.Views.LoginPage" BackgroundColor="#ffffff">
+    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+        <StackLayout HorizontalOptions="FillAndExpand" Margin="0,-40,0,0" VerticalOptions="Center"
+                     Padding="20,10,20,10" Spacing="25">
+            <Image Source="logo" Aspect="AspectFit" 
+               HeightRequest="40" 
+               HorizontalOptions="Center"
+               VerticalOptions="Start" Margin="0,0,0,20"/>
+            <!--<local:TextBox PlaceHolder="Login"/>
+            <local:TextBox PlaceHolder="Password ID" IsPassword="true"/>-->
+            <Frame HasShadow="False" Padding="5,2,5,2" BorderColor="{StaticResource PrimaryColor}" CornerRadius="0">
+                <local:CustomEntry Text="{Binding LoginId}" Placeholder="Login ID" HeightRequest="45" FontFamily="FontRegular" FontSize="18"/>
+            </Frame>
+            <Frame HasShadow="False" Padding="5,2,5,2" BorderColor="{StaticResource PrimaryColor}" CornerRadius="0">
+                <local:CustomEntry Text="{Binding Password}" Placeholder="Password" IsPassword="true" HeightRequest="45" FontFamily="FontRegular" FontSize="18"  />
+            </Frame>
+            <Grid HorizontalOptions="FillAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="Register" HorizontalOptions="Start" Style="{StaticResource TitleNormal}"/>
+                <Label Grid.Column="1" Text="Forgot Password" HorizontalOptions="End" Style="{StaticResource TitleNormal}"/>
+            </Grid>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Start" Spacing="0">
+                <CheckBox x:Name="cbkRemeber" IsChecked="{Binding IsUserRemeber,Mode=TwoWay}" VerticalOptions="Center" CheckedChanged="CheckBox_CheckedChanged"/>
+                <Label Text="Remeber me"  Style="{StaticResource TitleNormal}" HorizontalOptions="End" FontSize="18" FontAttributes="Bold" VerticalOptions="Center"/>
+            </StackLayout>
+            <Button Text="Login" Command="{Binding LoginCommand}" FontFamily="FontExtraBold" HeightRequest="50" TextColor="#ffffff" BackgroundColor="{StaticResource PrimaryColor}" CornerRadius="25"/>
+
+        </StackLayout>
+    </Grid>
+</ContentPage>

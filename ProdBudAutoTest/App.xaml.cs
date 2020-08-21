@@ -25,7 +25,7 @@ namespace ProdBudAutoTest
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("NavigationPage/CheckOperationPage");
+            await NavigationService.NavigateAsync("NavigationPage/LoginPage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -35,6 +35,8 @@ namespace ProdBudAutoTest
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
             containerRegistry.RegisterForNavigation<CheckOperationPage, CheckOperationPageViewModel>();
+            containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
+            containerRegistry.RegisterForNavigation<BarcodeScanPage, BarcodeScanPageViewModel>();
         }
     }
 }

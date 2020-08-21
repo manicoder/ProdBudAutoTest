@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:ProdBudAutoTest.Controls"
+             x:Class="ProdBudAutoTest.Controls.TextBox">
+  <ContentView.Content>
+        <Frame HasShadow="False" Padding="5,2,5,2" BorderColor="{StaticResource PrimaryColor}" CornerRadius="0">
+            <local:CustomEntry HeightRequest="45" FontFamily="FontRegular" FontSize="18" x:Name="txt"/>
+        </Frame>
+    </ContentView.Content>
+</ContentView>
