@@ -25,13 +25,12 @@
                     <cv:CarouselViewControl.ItemsSource>
                         <x:Array Type="{x:Type View}">
                             <controls:Step1View/>
-                            <Label Text="2"/>
-                            <Label Text="3"/>
-                            <Label Text="4"/>
-                            <Label Text="5"/>
-                            <Label Text="6"/>
-                            <Label Text="Result"/>
-                        </x:Array>
+                            <controls:Step2View/>
+                            <controls:Step3View/>
+                            <controls:Step4View/>
+                            <controls:Step5View/>
+                            <controls:Step6View/> 
+                         </x:Array>
                     </cv:CarouselViewControl.ItemsSource>
                 </cv:CarouselViewControl>
 

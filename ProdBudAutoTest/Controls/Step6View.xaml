@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProdBudAutoTest.Controls.Step6View">
+    <ContentView.Content>
+        <Grid Padding="20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="15">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Text="Result" FontSize="24" TextColor="#000000"
+               FontFamily="FontExtraBold"/>
+
+            <StackLayout Grid.Row="1">
+                <Grid HorizontalOptions="FillAndExpand" ColumnSpacing="-1">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="50"/>
+                    </Grid.ColumnDefinitions>
+                    <Frame Grid.Column="0" HasShadow="False" CornerRadius="0" BorderColor="LightGray" Padding="5,10,5,10" HorizontalOptions="FillAndExpand" >
+                        <Label Text="Parameter verification" LineBreakMode="WordWrap"  Style="{StaticResource TitleBold}" VerticalOptions="Center"/>
+                    </Frame>
+                    <Frame Grid.Column="1" HasShadow="False" CornerRadius="0" BorderColor="LightGray"  Padding="5,10,5,10" HorizontalOptions="FillAndExpand">
+                        <Grid HorizontalOptions="Center">
+                            <Label Text="Pass" TextColor="Green" FontFamily="FontExtraBold" IsVisible="{Binding IsPass}" Style="{StaticResource TitleNormal}"/>
+                            <Label Text="{Binding Result}" TextColor="{StaticResource StepLineRedColor}"  FontFamily="FontExtraBold"  Style="{StaticResource TitleNormal}" IsVisible="{Binding IsPass,Converter={StaticResource BoolToReverseVisibilityConverter}}"/>
+                        </Grid>
+                    </Frame>
+
+                </Grid>
+                <Grid HorizontalOptions="FillAndExpand" ColumnSpacing="-1">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="50"/>
+                    </Grid.ColumnDefinitions>
+                    <Frame Grid.Column="0" HasShadow="False" CornerRadius="0" BorderColor="LightGray" Padding="5,10,5,10" HorizontalOptions="FillAndExpand" >
+                        <Label Text="Error Reading" LineBreakMode="WordWrap"  Style="{StaticResource TitleBold}" VerticalOptions="Center"/>
+                    </Frame>
+                    <Frame Grid.Column="1" HasShadow="False" CornerRadius="0" BorderColor="LightGray"  Padding="5,10,5,10" HorizontalOptions="FillAndExpand">
+                        <Grid HorizontalOptions="Center">
+                            <Label Text="Pass" TextColor="Green" FontFamily="FontExtraBold" IsVisible="False" Style="{StaticResource TitleNormal}"/>
+                            <Label Text="Fail" TextColor="{StaticResource StepLineRedColor}"  FontFamily="FontExtraBold"  Style="{StaticResource TitleNormal}" IsVisible="{Binding IsPass,Converter={StaticResource BoolToReverseVisibilityConverter}}"/>
+                        </Grid>
+                    </Frame>
+
+                </Grid>
+                <Grid HorizontalOptions="FillAndExpand" ColumnSpacing="-1">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="50"/>
+                    </Grid.ColumnDefinitions>
+                    <Frame Grid.Column="0" HasShadow="False" CornerRadius="0" BorderColor="LightGray" Padding="5,10,5,10" HorizontalOptions="FillAndExpand" >
+                        <Label Text="Switch Function Check" LineBreakMode="WordWrap"  Style="{StaticResource TitleBold}" VerticalOptions="Center"/>
+                    </Frame>
+                    <Frame Grid.Column="1" HasShadow="False" CornerRadius="0" BorderColor="LightGray"  Padding="5,10,5,10" HorizontalOptions="FillAndExpand">
+                        <Grid HorizontalOptions="Center">
+                            <Label Text="Pass" TextColor="Green" FontFamily="FontExtraBold" IsVisible="{Binding IsPass}" Style="{StaticResource TitleNormal}"/>
+                            <Label Text="{Binding Result}" TextColor="{StaticResource StepLineRedColor}"  FontFamily="FontExtraBold"  Style="{StaticResource TitleNormal}" IsVisible="{Binding IsPass,Converter={StaticResource BoolToReverseVisibilityConverter}}"/>
+                        </Grid>
+                    </Frame>
+
+                </Grid>
+                <Grid HorizontalOptions="FillAndExpand" ColumnSpacing="-1">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="50"/>
+                    </Grid.ColumnDefinitions>
+                    <Frame Grid.Column="0" HasShadow="False" CornerRadius="0" BorderColor="LightGray" Padding="5,10,5,10" HorizontalOptions="FillAndExpand" >
+                        <Label Text="Parameter Check" LineBreakMode="WordWrap"  Style="{StaticResource TitleBold}" VerticalOptions="Center"/>
+                    </Frame>
+                    <Frame Grid.Column="1" HasShadow="False" CornerRadius="0" BorderColor="LightGray"  Padding="5,10,5,10" HorizontalOptions="FillAndExpand">
+                        <Grid HorizontalOptions="Center">
+                            <Label Text="Pass" TextColor="Green" FontFamily="FontExtraBold" IsVisible="{Binding IsPass}" Style="{StaticResource TitleNormal}"/>
+                            <Label Text="{Binding Result}" TextColor="{StaticResource StepLineRedColor}"  FontFamily="FontExtraBold"  Style="{StaticResource TitleNormal}" IsVisible="{Binding IsPass,Converter={StaticResource BoolToReverseVisibilityConverter}}"/>
+                        </Grid>
+                    </Frame>
+
+                </Grid>
+                <Grid HorizontalOptions="FillAndExpand" ColumnSpacing="-1">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="50"/>
+                    </Grid.ColumnDefinitions>
+                    <Frame Grid.Column="0" HasShadow="False" CornerRadius="0" BorderColor="LightGray" Padding="5,10,5,10" HorizontalOptions="FillAndExpand" >
+                        <Label Text="Error Re-Verification" LineBreakMode="WordWrap"  Style="{StaticResource TitleBold}" VerticalOptions="Center"/>
+                    </Frame>
+                    <Frame Grid.Column="1" HasShadow="False" CornerRadius="0" BorderColor="LightGray"  Padding="5,10,5,10" HorizontalOptions="FillAndExpand">
+                        <Grid HorizontalOptions="Center">
+                            <Label Text="Pass" TextColor="Green" FontFamily="FontExtraBold" IsVisible="{Binding IsPass}" Style="{StaticResource TitleNormal}"/>
+                            <Label Text="{Binding Result}" TextColor="{StaticResource StepLineRedColor}"  FontFamily="FontExtraBold"  Style="{StaticResource TitleNormal}" IsVisible="{Binding IsPass,Converter={StaticResource BoolToReverseVisibilityConverter}}"/>
+                        </Grid>
+                    </Frame>
+
+                </Grid>
+
+                <Grid HorizontalOptions="FillAndExpand" ColumnSpacing="-1">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="50"/>
+                    </Grid.ColumnDefinitions>
+                    <Frame Grid.Column="0" HasShadow="False" CornerRadius="0" BorderColor="LightGray" Padding="5,10,5,10" HorizontalOptions="FillAndExpand" >
+                        <Label Text="Result" LineBreakMode="WordWrap"  Style="{StaticResource TitleBold}" VerticalOptions="Center"/>
+                    </Frame>
+                    <Frame Grid.Column="1" HasShadow="False" CornerRadius="0" BorderColor="LightGray"  Padding="5,10,5,10" HorizontalOptions="FillAndExpand">
+                        <Grid HorizontalOptions="Center">
+                            <Label Text="Pass" TextColor="Green" FontFamily="FontExtraBold" IsVisible="{Binding IsPass}" Style="{StaticResource TitleNormal}"/>
+                            <Label Text="{Binding Result}" TextColor="{StaticResource StepLineRedColor}"  FontFamily="FontExtraBold"  Style="{StaticResource TitleNormal}" IsVisible="{Binding IsPass,Converter={StaticResource BoolToReverseVisibilityConverter}}"/>
+                        </Grid>
+                    </Frame>
+
+                </Grid>
+
+            </StackLayout>
+
+
+            <Frame Grid.Row="2" Padding="0" BorderColor="Gray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Editor Placeholder="Comment"/>
+            </Frame>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

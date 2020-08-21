@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ProdBudAutoTest.Controls.Step2View">
-    <ContentView.Content>
+             x:Class="ProdBudAutoTest.Controls.Step5View">
+  <ContentView.Content>
         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="15">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Label Grid.Row="0" Text="Error Reading" FontSize="24" TextColor="#000000"
+            <Label Grid.Row="0" Text="Error Re-Verification" FontSize="24" TextColor="#000000"
                FontFamily="FontExtraBold"/>
             <Frame Grid.Row="1" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <ListView  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ItemsSource="{Binding VehicleInfoList}">
