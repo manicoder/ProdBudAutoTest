@@ -18,6 +18,17 @@ namespace ProdBudAutoTest.ViewModels
             set { SetProperty(ref _title, value); }
         }
 
+        private bool mIsBusy;
+        public bool IsBusy
+        {
+            get { return mIsBusy; }
+            set
+            {
+                mIsBusy = value;
+                RaisePropertyChanged();
+            }
+        }
+
         public ViewModelBase(INavigationService navigationService)
         {
             NavigationService = navigationService;

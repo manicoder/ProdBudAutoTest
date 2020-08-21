@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using CarouselView.FormsPlugin.Android;
 using Prism;
 using Prism.Ioc;
 
@@ -18,6 +19,8 @@ namespace ProdBudAutoTest.Droid
             base.OnCreate(savedInstanceState);
             this.RequestedOrientation = ScreenOrientation.Portrait;
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            CarouselViewRenderer.Init();
+
             LoadApplication(new App(new AndroidInitializer()));
         }
 

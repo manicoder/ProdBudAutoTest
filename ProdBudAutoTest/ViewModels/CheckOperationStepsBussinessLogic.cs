@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -8,15 +9,20 @@ namespace ProdBudAutoTest.ViewModels
 {
     public partial class CheckOperationPageViewModel
     {
-        private void StepsInitCommand()
+        private async void StepsInitCommand()
         {
-            StepProgressCommand = new Command((obj) =>
+            SetStepProgress(1);
+            StepProgressCommand = new Command(async () =>
             {
-
-                if (Convert.ToInt32(obj) is int step)
+                var step = CurrentStepPosition + 2;
+                CurrentStepPosition += 1;
+                if (step <= 5)
                 {
-                    SetStepProgress(step);
+                    IsBusy = true;
+                    await Task.Delay(TimeSpan.FromSeconds(3));
+                    IsBusy = false;
                 }
+                SetStepProgress(step);
             });
         }
         private bool mIsStep1Pass;
@@ -150,7 +156,7 @@ namespace ProdBudAutoTest.ViewModels
                 RaisePropertyChanged();
             }
         }
-        public void SetStepProgress(int currentStep)
+        public async void SetStepProgress(int currentStep)
         {
             switch (currentStep)
             {

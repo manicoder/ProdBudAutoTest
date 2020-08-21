@@ -30,6 +30,17 @@ namespace ProdBudAutoTest.ViewModels
                 new VehicleInfoModel(){ TestType = "PVC duration", Desc = " ", Result = "Pass", IsPass = true },
             };
         }
+        private int mCurrentStepPosition;
+
+        public int CurrentStepPosition
+        {
+            get { return mCurrentStepPosition; }
+            set
+            {
+                mCurrentStepPosition = value;
+                RaisePropertyChanged();
+            }
+        }
 
 
         private ObservableCollection<VehicleInfoModel> mVehicleInfoList;
