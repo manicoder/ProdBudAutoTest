@@ -2,12 +2,18 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com" xmlns:controls="clr-namespace:ProdBudAutoTest.Controls"
-             prism:ViewModelLocator.AutowireViewModel="True"
+             prism:ViewModelLocator.AutowireViewModel="True" NavigationPage.HasNavigationBar="False"
              x:Class="ProdBudAutoTest.Views.CheckOperationPage" Background="#ffffff">
-    <StackLayout>
+    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <controls:HeaderView/>
+
+        <controls:StepsProgressControl/>
 
         <StackLayout HorizontalOptions="FillAndExpand" Padding="10">
-            <controls:StepsProgressControl/>
+
+
+
+
 
 
             <StackLayout Orientation="Vertical">
