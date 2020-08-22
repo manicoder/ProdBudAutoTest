@@ -30,18 +30,7 @@ namespace ProdBudAutoTest.ViewModels
                 new VehicleInfoModel(){ TestType = "PVC duration", Desc = " ", Result = "Pass", IsPass = true },
             };
         }
-        private int mCurrentStepPosition;
-
-        public int CurrentStepPosition
-        {
-            get { return mCurrentStepPosition; }
-            set
-            {
-                mCurrentStepPosition = value;
-                RaisePropertyChanged();
-            }
-        }
-
+        
 
         private ObservableCollection<VehicleInfoModel> mVehicleInfoList;
         public ObservableCollection<VehicleInfoModel> VehicleInfoList
@@ -54,7 +43,32 @@ namespace ProdBudAutoTest.ViewModels
             }
         }
 
+        private bool mIsShowStepButtons = true;
+        public bool IsShowStepButtons
+        {
+            get { return mIsShowStepButtons; }
+            set
+            {
+                mIsShowStepButtons = value;
+                RaisePropertyChanged();
+            }
+        }
 
+        private int mCurrentStepPosition;
+
+        public int CurrentStepPosition
+        {
+            get { return mCurrentStepPosition; }
+            set
+            {
+                mCurrentStepPosition = value;
+                if (mCurrentStepPosition == 5)
+                {
+                    IsShowStepButtons = false;
+                }
+                RaisePropertyChanged();
+            }
+        }
 
     }
 }

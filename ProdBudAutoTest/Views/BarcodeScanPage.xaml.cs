@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using ProdBudAutoTest.ViewModels;
+using Xamarin.Forms;
 
 namespace ProdBudAutoTest.Views
 {
@@ -25,8 +26,23 @@ namespace ProdBudAutoTest.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            animate(cornerImage);
+            scanView.IsAnalyzing = true;
+            scanView.IsScanning = true;
+            // animate(cornerImage);
         }
+        bool isAnimation = true;
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            scanView.IsAnalyzing = false;
+            scanView.IsScanning = false;
+            isAnimation = false;
+            //  this.AbortAnimation("fadeAnimation");
+            //  fadeAnimation = null;
+        }
+
+        Animation fadeAnimation = null;
+
         void animate(Image image)
         {
             var fadeAnimation = new Animation
@@ -48,18 +64,34 @@ namespace ProdBudAutoTest.Views
            }, 1.0, 0.0, Easing.CubicInOut, () => { })
                 }
             };
-            fadeAnimation.Commit(image, "fadeAnimation", 16, 1000, null, (d, f) =>
-            {
-                animate(image);
-            });
+            fadeAnimation.Commit(image, "fadeAnimation", 16, 1000, repeat: () => isAnimation);
+            //{
+            //    if (isAnimation)
+            //    {
+            //        animate(image);
+            //    }
+            //});
         }
 
         void Handle_OnScanResult(ZXing.Result result)
         {
-            scanView.IsScanning = false;
-            this.AbortAnimation("fadeAnimation");
+            if (txt.Text.Length == 17)
+            {
+                var context = this.BindingContext as BarcodeScanPageViewModel;
+                context.VinId = result.Text;
+                scanView.IsScanning = false;
+                this.AbortAnimation("fadeAnimation");
+            }
+        }
 
-
+        private void CustomEntry_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (txt.Text.Length == 17)
+            {
+                var context = this.BindingContext as BarcodeScanPageViewModel;
+                context.GoToNextPgae();
+                context.VinId = "";
+            }
         }
     }
 

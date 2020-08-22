@@ -122,7 +122,7 @@
 
 
             <Frame Grid.Row="2" Padding="0" BorderColor="Gray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                <Editor Placeholder="Comment"/>
+                <Editor Placeholder="Comment" HeightRequest="60"/>
             </Frame>
         </Grid>
     </ContentView.Content>

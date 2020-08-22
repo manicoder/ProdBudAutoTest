@@ -1,6 +1,7 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
+using Prism.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace ProdBudAutoTest.ViewModels
 {
     public class BarcodeScanPageViewModel : ViewModelBase
     {
-        public BarcodeScanPageViewModel(INavigationService navigationService) : base(navigationService)
+        public BarcodeScanPageViewModel(INavigationService navigationService, IPageDialogService pageDialogService) : base(navigationService, pageDialogService)
         {
 
         }
@@ -34,5 +35,30 @@ namespace ProdBudAutoTest.ViewModels
 
             return status;
         }
+
+        public async void GoToNextPgae()
+        {
+            var showDialog = await this.PageDialogService.DisplayActionSheetAsync("Confirm if Model is related to VIN " + VinId  + "\n Model: 123456", "Manual", "Confirm");
+            if (showDialog == "Confirm")
+            {
+                NavigationService.NavigateAsync("CheckOperationPage");
+            }
+            else
+            {
+
+            }
+        }
+
+        private string mVinId;
+        public string VinId
+        {
+            get { return mVinId; }
+            set
+            {
+                mVinId = value;
+                RaisePropertyChanged();
+            }
+        }
+
     }
 }
