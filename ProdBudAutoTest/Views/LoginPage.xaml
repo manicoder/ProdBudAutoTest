@@ -26,8 +26,16 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Label Text="Register" HorizontalOptions="Start" Style="{StaticResource TitleNormal}"/>
-                <Label Grid.Column="1" Text="Forgot Password" HorizontalOptions="End" Style="{StaticResource TitleNormal}"/>
+                <Label Text="Register" HorizontalOptions="Start" Style="{StaticResource TitleNormal}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding RegisterCommand}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Grid.Column="1" Text="Forgot Password" HorizontalOptions="End" Style="{StaticResource TitleNormal}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ResetPasswordCommand}"/>
+                    </Label.GestureRecognizers>
+                </Label>
             </Grid>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Start" Spacing="0">
                 <CheckBox x:Name="cbkRemeber" IsChecked="{Binding IsUserRemeber,Mode=TwoWay}" VerticalOptions="Center" CheckedChanged="CheckBox_CheckedChanged"/>

@@ -22,7 +22,11 @@ namespace ProdBudAutoTest.ViewModels
             base.OnNavigatedTo(parameters);
             await CheckAndRequestLocationPermission();
         }
-
+        public override void OnNavigatedFrom(INavigationParameters parameters)
+        {
+            base.OnNavigatedFrom(parameters);
+            VinId = "";
+        }
         public async Task<PermissionStatus> CheckAndRequestLocationPermission()
         {
             var status = await Permissions.CheckStatusAsync<Permissions.Camera>();
@@ -38,7 +42,7 @@ namespace ProdBudAutoTest.ViewModels
 
         public async void GoToNextPgae()
         {
-            var showDialog = await this.PageDialogService.DisplayActionSheetAsync("Confirm if Model is related to VIN " + VinId  + "\n Model: 123456", "Manual", "Confirm");
+            var showDialog = await this.PageDialogService.DisplayActionSheetAsync("Confirm if Model is related to VIN " + VinId + "\n Model: 123456", "Manual", "Confirm");
             if (showDialog == "Confirm")
             {
                 NavigationService.NavigateAsync("CheckOperationPage");

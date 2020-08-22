@@ -1,6 +1,7 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
+using Prism.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,26 +13,45 @@ namespace ProdBudAutoTest.ViewModels
 {
     public class LoginPageViewModel : ViewModelBase
     {
-        public LoginPageViewModel(INavigationService navigationService)
-            : base(navigationService)
+        public LoginPageViewModel(INavigationService navigationService, IPageDialogService pageDialogService)
+            : base(navigationService, pageDialogService)
         {
             LoginCommand = new Command(async () =>
             {
-                if (this.IsUserRemeber)
+                if (string.IsNullOrEmpty(LoginId))
                 {
-                    try
-                    {
-                        await SecureStorage.SetAsync("logingId", this.LoginId);
-                        await SecureStorage.SetAsync("pwd", this.Password);
-
-                        
-                    }
-                    catch (Exception ex)
-                    {
-                        // Possible that device doesn't support secure storage on device.
-                    }
+                    await PageDialogService.DisplayAlertAsync("Required", "Please enter Login ID", "OK");
                 }
-                NavigationService.NavigateAsync("../BarcodeScanPage");
+                else if (string.IsNullOrEmpty(Password))
+                {
+                    await PageDialogService.DisplayAlertAsync("Required", "Please enter Password", "OK");
+                }
+                else
+                {
+                    if (this.IsUserRemeber)
+                    {
+                        try
+                        {
+                            await SecureStorage.SetAsync("logingId", this.LoginId);
+                            await SecureStorage.SetAsync("pwd", this.Password);
+                        }
+                        catch (Exception ex)
+                        {
+                            // Possible that device doesn't support secure storage on device.
+                        }
+                    }
+                    NavigationService.NavigateAsync("../BarcodeScanPage");
+                }
+            });
+
+            ResetPasswordCommand = new Command(() =>
+            {
+                PageDialogService.DisplayAlertAsync("Reset Password", "Pleasse conatct administrator  for reset your password", "OK");
+            });
+
+            RegisterCommand = new Command(() =>
+            {
+                PageDialogService.DisplayAlertAsync("Registration", "Pleasse conatct administrator  for reset your password", "OK");
             });
         }
         public async override void OnNavigatedTo(INavigationParameters parameters)
@@ -78,5 +98,8 @@ namespace ProdBudAutoTest.ViewModels
         }
 
         public ICommand LoginCommand { get; set; }
+        public ICommand ResetPasswordCommand { get; set; }
+        public ICommand RegisterCommand { get; set; }
+
     }
 }

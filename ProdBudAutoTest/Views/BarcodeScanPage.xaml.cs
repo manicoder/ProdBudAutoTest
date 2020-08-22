@@ -90,7 +90,7 @@ namespace ProdBudAutoTest.Views
             {
                 var context = this.BindingContext as BarcodeScanPageViewModel;
                 context.GoToNextPgae();
-                context.VinId = "";
+               // context.VinId = "";
             }
         }
     }
