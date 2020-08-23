@@ -12,7 +12,7 @@
 
         <controls:HeaderView Grid.Row="0"/>
 
-        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="1" RowSpacing="15" Padding="10">
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="1" RowSpacing="15" Padding="10,10,10,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
@@ -37,7 +37,7 @@
             </Frame>
 
 
-            <Grid  HorizontalOptions="FillAndExpand" Grid.Row="2" Margin="0,0,0,5" IsVisible="{Binding IsShowStepButtons}">
+            <Grid  HorizontalOptions="FillAndExpand" Grid.Row="2" Margin="0,0,0,5" Padding="0,0,0,10" IsVisible="{Binding IsShowStepButtons}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>

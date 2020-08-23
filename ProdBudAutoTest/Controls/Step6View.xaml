@@ -3,10 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProdBudAutoTest.Controls.Step6View">
     <ContentView.Content>
-        <Grid Padding="20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="15">
+        <Grid Padding="10,10,10,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="15">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="80"/>
                 <RowDefinition Height="Auto"/>
 
             </Grid.RowDefinitions>
@@ -122,8 +123,10 @@
 
 
             <Frame Grid.Row="2" Padding="0" BorderColor="Gray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                <Editor Placeholder="Comment" HeightRequest="60"/>
+                <Editor Placeholder="Comment" VerticalOptions="EndAndExpand" HeightRequest="80"/>
             </Frame>
+            <Button Text="Submit" Grid.Row="3" Command="{Binding GoHomePageCommand}" FontFamily="FontExtraBold" HeightRequest="50" TextColor="#ffffff" BackgroundColor="{StaticResource PrimaryColor}" CornerRadius="25"/>
+
         </Grid>
     </ContentView.Content>
 </ContentView>
