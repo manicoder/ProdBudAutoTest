@@ -6,7 +6,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace ProdBudAutoTest.ViewModels
 {
@@ -14,7 +16,52 @@ namespace ProdBudAutoTest.ViewModels
     {
         public BarcodeScanPageViewModel(INavigationService navigationService, IPageDialogService pageDialogService) : base(navigationService, pageDialogService)
         {
+            PopupConfirmCommand = new Command((obj) =>
+            {
+                GoToNextPgae();
+                if (obj is string param)
+                {
+                    if (param == "Confirm")
+                    {
+                        NavigationService.NavigateAsync("CheckOperationPage");
+                    }
+                    else
+                    {
+                        if (IsShowManualSelection)
+                        {
+                            IsShowManualSelection = false;
+                        }
+                        else
+                        {
+                            IsShowManualSelection = true;
+                        }
+                    }
+                }
+                //var showDialog = await this.PageDialogService.DisplayActionSheetAsync("Confirm if Model is related to VIN " + VinId + "\n Model: 123456", "Manual", "Confirm");
+                //if (showDialog == "Confirm")
+                //{
+                //    NavigationService.NavigateAsync("CheckOperationPage");
+                //}
+                //else
+                //{
 
+                //}
+            });
+            ShowManualCommand = new Command((obj) =>
+            {
+                if (obj is string model)
+                {
+                    this.ModelID = model;
+                }
+                if (IsShowManualSelection)
+                {
+                    IsShowManualSelection = false;
+                }
+                else
+                {
+                    IsShowManualSelection = true;
+                }
+            });
         }
 
         public async override void OnNavigatedTo(INavigationParameters parameters)
@@ -42,14 +89,13 @@ namespace ProdBudAutoTest.ViewModels
 
         public async void GoToNextPgae()
         {
-            var showDialog = await this.PageDialogService.DisplayActionSheetAsync("Confirm if Model is related to VIN " + VinId + "\n Model: 123456", "Manual", "Confirm");
-            if (showDialog == "Confirm")
+            if (IsConfirmPopupVisible)
             {
-                NavigationService.NavigateAsync("CheckOperationPage");
+                IsConfirmPopupVisible = false;
             }
             else
             {
-
+                IsConfirmPopupVisible = true;
             }
         }
 
@@ -60,9 +106,57 @@ namespace ProdBudAutoTest.ViewModels
             set
             {
                 mVinId = value;
+                PopupTitle = "Please confirm if VIN ID :" + value + " is related to Model";
                 RaisePropertyChanged();
             }
         }
 
+        private string mPopupTitl;
+
+        public string PopupTitle
+        {
+            get { return mPopupTitl; }
+            set
+            {
+                mPopupTitl = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        private string mModelID;
+        public string ModelID
+        {
+            get { return mModelID; }
+            set
+            {
+                mModelID = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        private bool mIsShowManualSelection;
+
+        public bool IsShowManualSelection
+        {
+            get { return mIsShowManualSelection; }
+            set
+            {
+                mIsShowManualSelection = value;
+                RaisePropertyChanged();
+            }
+        }
+        private bool mIsConfirmPopupVisible;
+        public bool IsConfirmPopupVisible
+        {
+            get { return mIsConfirmPopupVisible; }
+            set
+            {
+                mIsConfirmPopupVisible = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public ICommand ShowManualCommand { get; set; }
+        public ICommand PopupConfirmCommand { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using ProdBudAutoTest.ViewModels;
+﻿using ProdBudAutoTest.DPService;
+using ProdBudAutoTest.ViewModels;
 using Xamarin.Forms;
 
 namespace ProdBudAutoTest.Views
@@ -88,9 +89,11 @@ namespace ProdBudAutoTest.Views
         {
             if (txt.Text.Length == 17)
             {
+                //DependencyService.Get<IKeyboardHelper>().HideKeyboard();
+                popup.Focus();
                 var context = this.BindingContext as BarcodeScanPageViewModel;
                 context.GoToNextPgae();
-               // context.VinId = "";
+                // context.VinId = "";
             }
         }
     }

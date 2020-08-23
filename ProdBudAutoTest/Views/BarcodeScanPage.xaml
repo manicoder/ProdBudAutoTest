@@ -5,7 +5,7 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="ProdBudAutoTest.Views.BarcodeScanPage" NavigationPage.HasNavigationBar="False" BackgroundColor="White">
 
-    
+
     <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -33,30 +33,33 @@
         <Grid Grid.Row="3" x:Name="scanGrid" BackgroundColor="Red"  
                RowSpacing="0" ColumnSpacing="0"
                HorizontalOptions="FillAndExpand" VerticalOptions="Start">
-             <Grid.ColumnDefinitions>
-                 <ColumnDefinition Width="30"/>
-                 <ColumnDefinition Width="*"/>
-                 <ColumnDefinition Width="30"/>
-             </Grid.ColumnDefinitions>
-             <Grid.RowDefinitions>
-                 <RowDefinition Height="30"/>
-                 <RowDefinition Height="*"/>
-                 <RowDefinition Height="30"/>
-             </Grid.RowDefinitions>
-            <zxing:ZXingScannerView Grid.ColumnSpan="3" Grid.RowSpan="3" x:Name="scanView" OnScanResult="Handle_OnScanResult" IsScanning="true"/> 
-             <Grid Grid.Column="1" Grid.Row="1"> 
-                 <Image x:Name="cornerImage" Source="corners.png"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/> 
-             </Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <zxing:ZXingScannerView Grid.ColumnSpan="3" Grid.RowSpan="3" x:Name="scanView" OnScanResult="Handle_OnScanResult" IsScanning="true"/>
+            <Grid Grid.Column="1" Grid.Row="1">
+                <Image x:Name="cornerImage" Source="corners.png"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+            </Grid>
             <BoxView BackgroundColor="#88000000" Grid.Row="0" Grid.ColumnSpan="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
             <BoxView BackgroundColor="#88000000" Grid.Row="2" Grid.ColumnSpan="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
             <BoxView BackgroundColor="#88000000" Grid.Row="1" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
             <BoxView BackgroundColor="#88000000" Grid.Row="1" Grid.Column="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
 
-         </Grid>
+        </Grid>
 
-        <Button Text="Manual Model Select" Grid.Row="4" Command="{Binding LoginCommand}" Margin="20,20,20,20"
+        <Button Text="Manual Model Select" Grid.Row="4" Command="{Binding ShowManualCommand}" Margin="20,20,20,20"
                 FontFamily="FontExtraBold" HeightRequest="50" TextColor="#ffffff" 
                 BackgroundColor="{StaticResource PrimaryColor}" CornerRadius="25"/>
 
+        <local:ManualSelectionPopupView Grid.Row="0" Grid.RowSpan="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsVisible="{Binding IsShowManualSelection}"/>
+
+        <local:ALertPopupView x:Name="popup" HorizontalOptions="FillAndExpand" Grid.RowSpan="5" VerticalOptions="FillAndExpand" IsVisible="{Binding IsConfirmPopupVisible}"/>
     </Grid>
 </ContentPage>
