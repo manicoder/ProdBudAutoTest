@@ -28,10 +28,20 @@
                                     <Frame Grid.Column="1" HasShadow="False" CornerRadius="0" BorderColor="LightGray"  Padding="5,10,5,10" HorizontalOptions="FillAndExpand">
                                         <Label Text="{Binding Desc}" Style="{StaticResource TitleNormal}" HorizontalOptions="Center"/>
                                     </Frame>
-                                    <Frame Grid.Column="2" HasShadow="False" CornerRadius="0" BorderColor="LightGray"  Padding="5,10,5,10" HorizontalOptions="FillAndExpand">
+                                    <!--<Frame Grid.Column="2" HasShadow="False" CornerRadius="0" BorderColor="LightGray"  Padding="5,10,5,10" HorizontalOptions="FillAndExpand">
                                         <Grid HorizontalOptions="Center">
                                             <Label Text="{Binding Result}" TextColor="Green" FontFamily="FontExtraBold" IsVisible="{Binding IsPass}" Style="{StaticResource TitleNormal}"/>
                                             <Label Text="{Binding Result}" TextColor="{StaticResource StepLineRedColor}"  FontFamily="FontExtraBold"  Style="{StaticResource TitleNormal}" IsVisible="{Binding IsPass,Converter={StaticResource BoolToReverseVisibilityConverter}}"/>
+                                        </Grid>
+                                    </Frame>-->
+                                    <Frame Grid.Column="2" HasShadow="False" CornerRadius="0" BorderColor="LightGray"  Padding="5,10,5,10" HorizontalOptions="FillAndExpand">
+                                        <Grid HorizontalOptions="Center" HeightRequest="25" WidthRequest="25">
+                                            <ImageButton Source="tickbutton" HeightRequest="25" WidthRequest="25" Aspect="AspectFit" IsVisible="{Binding IsPass}" Clicked="Pass_Clicked" CommandParameter="pass"/>
+                                            <ImageButton Source="closebutton" HeightRequest="25" WidthRequest="25" Aspect="AspectFit" IsVisible="{Binding IsFail}" Clicked="Pass_Clicked" CommandParameter="fail"/>
+                                            <ImageButton Source="nilbutton" HeightRequest="25" WidthRequest="25" Aspect="AspectFit" IsVisible="{Binding IsNil}" Clicked="Pass_Clicked"  CommandParameter="nil"/>
+
+                                            <!--<Label Text="{Binding Result}" TextColor="Green" FontFamily="FontExtraBold" IsVisible="{Binding IsPass}" Style="{StaticResource TitleNormal}"/>
+                                            <Label Text="{Binding Result}" TextColor="{StaticResource StepLineRedColor}"  FontFamily="FontExtraBold"  Style="{StaticResource TitleNormal}" IsVisible="{Binding IsPass,Converter={StaticResource BoolToReverseVisibilityConverter}}"/>-->
                                         </Grid>
                                     </Frame>
                                 </Grid>

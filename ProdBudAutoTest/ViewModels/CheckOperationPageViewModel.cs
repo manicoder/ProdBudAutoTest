@@ -17,6 +17,9 @@ namespace ProdBudAutoTest.ViewModels
             : base(navigationService)
         {
             Title = "Main Page";
+
+           
+
             StepsInitCommand();
             VehicleInfoList = new ObservableCollection<VehicleInfoModel>()
             {
@@ -79,7 +82,13 @@ namespace ProdBudAutoTest.ViewModels
                 new VehicleInfoModel(){ TestType = "DP soot KPA", Desc = " ", Result = "Pass", IsPass = true },
                 new VehicleInfoModel(){ TestType = "Adblue level", Desc = " ", Result = "Pass", IsPass = true },
             };
+
+
+     
+
         }
+
+       
 
 
         private ObservableCollection<VehicleInfoModel> mVehicleInfoList;
@@ -167,6 +176,6 @@ namespace ProdBudAutoTest.ViewModels
                 RaisePropertyChanged();
             }
         }
-
+        public ICommand TogglePassFailCommand { get; set; }
     }
 }
