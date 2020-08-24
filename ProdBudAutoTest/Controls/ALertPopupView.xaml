@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProdBudAutoTest.Controls.ALertPopupView">
     <ContentView.Content>
-        <Grid BackgroundColor="#99ffffff" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="40,40,40,40">
+        <Grid BackgroundColor="#99ffffff" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="30">
 
             <Frame HorizontalOptions="FillAndExpand" VerticalOptions="Center">
                 <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="30">
@@ -13,11 +13,15 @@
                     <!--<Label x:Name="txt2" Text="Model 123456" FontSize="20" LineBreakMode="WordWrap" 
                            Style="{StaticResource TitleNormal}"/>-->
 
-                    <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="CenterAndExpand" VerticalOptions="End">
-                        <Button Text="Manual" WidthRequest="120" Command="{Binding PopupConfirmCommand}" CommandParameter="Manual" FontFamily="FontExtraBold" HeightRequest="40" TextColor="#ffffff" BackgroundColor="{StaticResource PrimaryColor}" CornerRadius="20"/>
-                        <Button Text="Confirm" WidthRequest="120" Command="{Binding PopupConfirmCommand}" CommandParameter="Confirm" FontFamily="FontExtraBold" HeightRequest="40" TextColor="#ffffff" BackgroundColor="{StaticResource PrimaryColor}" CornerRadius="20"/>
+                    <Grid HorizontalOptions="CenterAndExpand" RowSpacing="10" VerticalOptions="End">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Text="Manual" HorizontalOptions="FillAndExpand" Command="{Binding PopupConfirmCommand}" CommandParameter="Manual" FontFamily="FontExtraBold" HeightRequest="40" TextColor="#ffffff" BackgroundColor="{StaticResource PrimaryColor}" CornerRadius="20"/>
+                        <Button Grid.Column="1" HorizontalOptions="FillAndExpand"  Text="Confirm" WidthRequest="120" Command="{Binding PopupConfirmCommand}" CommandParameter="Confirm" FontFamily="FontExtraBold" HeightRequest="40" TextColor="#ffffff" BackgroundColor="{StaticResource PrimaryColor}" CornerRadius="20"/>
 
-                    </StackLayout>
+                    </Grid>
                 </StackLayout>
             </Frame>
         </Grid>

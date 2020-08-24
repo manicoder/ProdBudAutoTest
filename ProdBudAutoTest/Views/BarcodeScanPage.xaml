@@ -27,7 +27,8 @@
             <local:CustomEntry x:Name="txt" Text="{Binding VinId}" MaxLength="17" TextChanged="CustomEntry_TextChanged" Placeholder="Enter VIN"  FontFamily="FontRegular" FontSize="20"/>
         </Frame>
 
-        <Label Grid.Row="2" Margin="20,0,20,20" Text="Or Hover your camera on VIN barcode" HorizontalOptions="Center" Style="{StaticResource TitleBold}" FontSize="20" VerticalOptions="Center"/>
+        <Label Grid.Row="2" Margin="20,0,20,20" Text="Enter VIN in the box above or hover your camera on the VIN bar code."
+               LineBreakMode="WordWrap" HorizontalOptions="Center" Style="{StaticResource TitleBold}" FontSize="18" VerticalOptions="Center"/>
 
 
         <Grid Grid.Row="3" x:Name="scanGrid" BackgroundColor="Red"  

@@ -61,6 +61,20 @@ namespace ProdBudAutoTest.ViewModels
                 {
                     IsShowManualSelection = true;
                 }
+
+            });
+
+            ManualSubmitCommand = new Command((obj) =>
+            {
+                if (obj is string model)
+                {
+                    this.ModelID = model;
+                }
+
+                NavigationService.NavigateAsync("CheckOperationPage");
+
+                Task.Delay(100);
+                IsShowManualSelection = false;
             });
         }
 
@@ -157,6 +171,7 @@ namespace ProdBudAutoTest.ViewModels
         }
 
         public ICommand ShowManualCommand { get; set; }
+        public ICommand ManualSubmitCommand { get; set; }
         public ICommand PopupConfirmCommand { get; set; }
     }
 }
