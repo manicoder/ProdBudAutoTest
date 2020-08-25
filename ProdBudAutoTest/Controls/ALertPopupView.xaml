@@ -6,20 +6,20 @@
         <Grid BackgroundColor="#99ffffff" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="30">
 
             <Frame HorizontalOptions="FillAndExpand" VerticalOptions="Center">
-                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="30">
-                    <Label x:Name="txt1" Text="{Binding PopupTitle}" FontSize="20" LineBreakMode="WordWrap" 
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="15">
+                    <Label x:Name="txt1" Text="{Binding PopupTitle}" FontSize="16" LineBreakMode="WordWrap" 
                            Style="{StaticResource TitleNormal}"/>
 
                     <!--<Label x:Name="txt2" Text="Model 123456" FontSize="20" LineBreakMode="WordWrap" 
                            Style="{StaticResource TitleNormal}"/>-->
 
-                    <Grid HorizontalOptions="CenterAndExpand" RowSpacing="10" VerticalOptions="End">
+                    <Grid HorizontalOptions="CenterAndExpand"  HeightRequest="50" VerticalOptions="End">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Button Text="Manual" HorizontalOptions="FillAndExpand" Command="{Binding PopupConfirmCommand}" CommandParameter="Manual" FontFamily="FontExtraBold" HeightRequest="40" TextColor="#ffffff" BackgroundColor="{StaticResource PrimaryColor}" CornerRadius="20"/>
-                        <Button Grid.Column="1" HorizontalOptions="FillAndExpand"  Text="Confirm" WidthRequest="120" Command="{Binding PopupConfirmCommand}" CommandParameter="Confirm" FontFamily="FontExtraBold" HeightRequest="40" TextColor="#ffffff" BackgroundColor="{StaticResource PrimaryColor}" CornerRadius="20"/>
+                        <Button Text="Manual" WidthRequest="125" HorizontalOptions="FillAndExpand" Command="{Binding PopupConfirmCommand}" CommandParameter="Manual" FontFamily="FontExtraBold"  TextColor="#ffffff" BackgroundColor="{StaticResource PrimaryColor}" CornerRadius="25"/>
+                        <Button Grid.Column="1" WidthRequest="125" HorizontalOptions="FillAndExpand"  Text="Confirm"  Command="{Binding PopupConfirmCommand}" CommandParameter="Confirm" FontFamily="FontExtraBold" TextColor="#ffffff" BackgroundColor="{StaticResource PrimaryColor}" CornerRadius="25"/>
 
                     </Grid>
                 </StackLayout>

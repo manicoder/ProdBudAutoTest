@@ -16,6 +16,7 @@ namespace ProdBudAutoTest.ViewModels
     {
         public BarcodeScanPageViewModel(INavigationService navigationService, IPageDialogService pageDialogService) : base(navigationService, pageDialogService)
         {
+            IsShowLogoutButton = false;
             PopupConfirmCommand = new Command((obj) =>
             {
                 GoToNextPgae();
@@ -43,7 +44,22 @@ namespace ProdBudAutoTest.ViewModels
             ShowManualCommand = new Command((obj) =>
             {
 
-                NavigationService.NavigateAsync("ManualSelectionPage"); 
+                NavigationService.NavigateAsync("ManualSelectionPage");
+            });
+            LogoutCommand = new Command(() =>
+            {
+                NavigationService.NavigateAsync("../LoginPage");
+            });
+            ToggleMenuCommand = new Command(() =>
+            {
+                if (IsShowLogoutButton)
+                {
+                    IsShowLogoutButton = false;
+                }
+                else
+                {
+                    IsShowLogoutButton = true;
+                }
             });
 
         }
@@ -139,8 +155,22 @@ namespace ProdBudAutoTest.ViewModels
                 RaisePropertyChanged();
             }
         }
+        private bool mIsShowLogoutButton;
+        public bool IsShowLogoutButton
+        {
+            get { return mIsShowLogoutButton; }
+            set
+            {
+                mIsShowLogoutButton = value;
+                RaisePropertyChanged();
+            }
+        }
+
 
         public ICommand ShowManualCommand { get; set; }
         public ICommand PopupConfirmCommand { get; set; }
+        public ICommand LogoutCommand { get; set; }
+        public ICommand ToggleMenuCommand { get; set; }
+
     }
 }

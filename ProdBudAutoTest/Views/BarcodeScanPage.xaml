@@ -16,22 +16,29 @@
         </Grid.RowDefinitions>
 
         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Start"
-              BackgroundColor="{StaticResource PrimaryColor}" HeightRequest="90">
-            <Label Text="Get Model" VerticalOptions="End" HorizontalOptions="Center" TextColor="White"
-                   FontSize="20" Style="{StaticResource TitleBold}" Margin="0,0,0,22"/>
+              BackgroundColor="{StaticResource PrimaryColor}" HeightRequest="75">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Label Text="Get Model" Grid.Column="1" Grid.ColumnSpan="2" VerticalOptions="End" HorizontalOptions="Center" TextColor="White"
+                   FontSize="18" Style="{StaticResource TitleBold}" Margin="0,0,0,14"/>
+            <ImageButton Grid.Column="2"  Command="{Binding ToggleMenuCommand}" Source="more" Aspect="AspectFit" BackgroundColor="Transparent"
+                       HeightRequest="27" WidthRequest="27"  Margin="0,20,20,0" HorizontalOptions="End" />
         </Grid>
 
 
 
-        <Frame Grid.Row="1" HasShadow="False" Margin="20" Padding="5,2,5,2" BorderColor="{StaticResource PrimaryColor}" CornerRadius="0">
-            <local:CustomEntry x:Name="txt" Text="{Binding VinId}" MaxLength="17" TextChanged="CustomEntry_TextChanged" Placeholder="Enter VIN"  FontFamily="FontRegular" FontSize="20"/>
+        <Frame Grid.Row="1" HasShadow="False" Margin="10,15,10,10" Padding="5,2,5,2" BorderColor="{StaticResource PrimaryColor}" CornerRadius="0">
+            <local:CustomEntry x:Name="txt" Text="{Binding VinId}" MaxLength="17" TextChanged="CustomEntry_TextChanged" Placeholder="Enter VIN"  FontFamily="FontRegular" FontSize="17"/>
         </Frame>
 
-        <Label Grid.Row="2" Margin="20,0,20,20" Text="Enter VIN in the box above or hover your camera on the VIN bar code."
-               LineBreakMode="WordWrap" HorizontalOptions="Center" Style="{StaticResource TitleBold}" FontSize="18" VerticalOptions="Center"/>
+        <Label Grid.Row="2" Margin="20,0,20,10" Text="Enter VIN in the box above or hover your camera on the VIN bar code."
+               LineBreakMode="WordWrap" HorizontalOptions="Center" Style="{StaticResource TitleBold}" FontSize="14" VerticalOptions="Center"/>
 
 
-        <Grid Grid.Row="3" x:Name="scanGrid" BackgroundColor="Red"  
+        <Grid Grid.Row="3" x:Name="scanGrid"  
                RowSpacing="0" ColumnSpacing="0"
                HorizontalOptions="FillAndExpand" VerticalOptions="Start">
             <Grid.ColumnDefinitions>
@@ -56,12 +63,14 @@
             <BoxView HorizontalOptions="FillAndExpand" HeightRequest="2" Grid.ColumnSpan="3" Grid.Row="1" VerticalOptions="Center" BackgroundColor="#55FF0000"/>
         </Grid>
 
-        <Button Text="Manual Model Select" Grid.Row="4" Command="{Binding ShowManualCommand}" Margin="20,20,20,20"
+        <Button Text="Manual Model Select" Grid.Row="4" Command="{Binding ShowManualCommand}" Margin="20,15,20,15"
                 FontFamily="FontExtraBold" HeightRequest="50" TextColor="#ffffff" 
                 BackgroundColor="{StaticResource PrimaryColor}" CornerRadius="25"/>
 
         <!--<local:ManualSelectionPopupView Grid.Row="0" Grid.RowSpan="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsVisible="{Binding IsShowManualSelection}"/>-->
 
         <local:ALertPopupView x:Name="popup" HorizontalOptions="FillAndExpand" Grid.RowSpan="5" VerticalOptions="FillAndExpand" IsVisible="{Binding IsConfirmPopupVisible}"/>
+        <Button Text="Logout" WidthRequest="140" IsVisible="{Binding IsShowLogoutButton}" Command="{Binding LogoutCommand}" BackgroundColor="#2e325b" TextColor="#ffffff"  HeightRequest="50" FontFamily="FontBold" Grid.RowSpan="5" HorizontalOptions="End" VerticalOptions="Start" Margin="0,75,0,0"/>
+
     </Grid>
 </ContentPage>

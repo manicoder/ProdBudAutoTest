@@ -4,7 +4,7 @@
              x:Class="ProdBudAutoTest.Controls.HeaderView">
     <ContentView.Content>
         <StackLayout HorizontalOptions="FillAndExpand" Spacing="0">
-            <StackLayout HorizontalOptions="FillAndExpand" HeightRequest="100" Spacing="0" BackgroundColor="{StaticResource PrimaryColor}">
+            <StackLayout HorizontalOptions="FillAndExpand" HeightRequest="90" Spacing="0" BackgroundColor="{StaticResource PrimaryColor}">
                 <BoxView  HeightRequest="36"/>
                 <Grid HorizontalOptions="FillAndExpand" ColumnSpacing="10" Padding="10,0,10,0"
                       VerticalOptions="End">
@@ -14,10 +14,10 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <ImageButton BackgroundColor="Transparent"  Command="{Binding GoHomePageCommand}" Source="home" Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center" 
-                                 HeightRequest="35" WidthRequest="35"/>
+                                 HeightRequest="30" WidthRequest="30"/>
                     <StackLayout Grid.Column="1" Spacing="5" HorizontalOptions="Start" VerticalOptions="Center">
-                        <Label Text="12345678901234567" LineBreakMode="TailTruncation" TextColor="White" FontSize="20" Style="{StaticResource TitleBold}" />
-                        <Label Text="432423424324234"  LineBreakMode="TailTruncation" TextColor="White" FontSize="18" Style="{StaticResource TitleBold}" />
+                        <Label Text="12345678901234567" LineBreakMode="TailTruncation" TextColor="White" FontSize="19" Style="{StaticResource TitleBold}" />
+                        <Label Text="432423424324234"  LineBreakMode="TailTruncation" TextColor="White" FontSize="17" Style="{StaticResource TitleBold}" />
                     </StackLayout>
                     <StackLayout Grid.Column="2" HorizontalOptions="End" Orientation="Horizontal">
                         <Frame Padding="0"

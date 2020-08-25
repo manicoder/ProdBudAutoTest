@@ -8,7 +8,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Label Grid.Row="0" Text="Switch Functions" FontSize="24" TextColor="#000000"
+            <Label Grid.Row="0" Text="Switch Functions" FontSize="19" TextColor="#000000"
                FontFamily="FontExtraBold"/>
             <Frame Grid.Row="1" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <ListView  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ItemsSource="{Binding VehicleInfoList3}">
