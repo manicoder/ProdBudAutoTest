@@ -27,14 +27,7 @@ namespace ProdBudAutoTest.ViewModels
                     }
                     else
                     {
-                        if (IsShowManualSelection)
-                        {
-                            IsShowManualSelection = false;
-                        }
-                        else
-                        {
-                            IsShowManualSelection = true;
-                        }
+                        NavigationService.NavigateAsync("ManualSelectionPage");
                     }
                 }
                 //var showDialog = await this.PageDialogService.DisplayActionSheetAsync("Confirm if Model is related to VIN " + VinId + "\n Model: 123456", "Manual", "Confirm");
@@ -49,33 +42,10 @@ namespace ProdBudAutoTest.ViewModels
             });
             ShowManualCommand = new Command((obj) =>
             {
-                if (obj is string model)
-                {
-                    this.ModelID = model;
-                }
-                if (IsShowManualSelection)
-                {
-                    IsShowManualSelection = false;
-                }
-                else
-                {
-                    IsShowManualSelection = true;
-                }
 
+                NavigationService.NavigateAsync("ManualSelectionPage"); 
             });
 
-            ManualSubmitCommand = new Command((obj) =>
-            {
-                if (obj is string model)
-                {
-                    this.ModelID = model;
-                }
-
-                NavigationService.NavigateAsync("CheckOperationPage");
-
-                Task.Delay(100);
-                IsShowManualSelection = false;
-            });
         }
 
         public async override void OnNavigatedTo(INavigationParameters parameters)
@@ -148,17 +118,17 @@ namespace ProdBudAutoTest.ViewModels
             }
         }
 
-        private bool mIsShowManualSelection;
+        //private bool mIsShowManualSelection;
 
-        public bool IsShowManualSelection
-        {
-            get { return mIsShowManualSelection; }
-            set
-            {
-                mIsShowManualSelection = value;
-                RaisePropertyChanged();
-            }
-        }
+        //public bool IsShowManualSelection
+        //{
+        //    get { return mIsShowManualSelection; }
+        //    set
+        //    {
+        //        mIsShowManualSelection = value;
+        //        RaisePropertyChanged();
+        //    }
+        //}
         private bool mIsConfirmPopupVisible;
         public bool IsConfirmPopupVisible
         {
@@ -171,7 +141,6 @@ namespace ProdBudAutoTest.ViewModels
         }
 
         public ICommand ShowManualCommand { get; set; }
-        public ICommand ManualSubmitCommand { get; set; }
         public ICommand PopupConfirmCommand { get; set; }
     }
 }

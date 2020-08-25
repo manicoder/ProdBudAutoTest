@@ -13,7 +13,7 @@ namespace ProdBudAutoTest.ViewModels
     public class ViewModelBase : BindableBase, IInitialize, INavigationAware, IDestructible
     {
         protected INavigationService NavigationService { get; private set; }
-        protected IPageDialogService PageDialogService { get; private set; }
+        public IPageDialogService PageDialogService { get; private set; }
 
         private string _title;
         public string Title
@@ -46,7 +46,8 @@ namespace ProdBudAutoTest.ViewModels
         }
         private void InitView()
         {
-            GoHomePageCommand = new Command(() => { NavigationService.GoBackAsync(); });
+            GoHomePageCommand = new Command(() => { NavigationService.GoBackToRootAsync(); });
+            GoBackCommand = new Command(() => { NavigationService.GoBackAsync(); });
 
         }
         public virtual void Initialize(INavigationParameters parameters)
@@ -70,5 +71,6 @@ namespace ProdBudAutoTest.ViewModels
         }
 
         public ICommand GoHomePageCommand { get; set; }
+        public ICommand GoBackCommand { get; set; }
     }
 }

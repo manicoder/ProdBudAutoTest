@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com" NavigationPage.HasNavigationBar="False" BackgroundColor="#FFFFFF"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="ProdBudAutoTest.Views.ManualSelectionPage">
+    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid HorizontalOptions="FillAndExpand" HeightRequest="90"
+                              
+                              BackgroundColor="{StaticResource PrimaryColor}">
+            <Grid HorizontalOptions="FillAndExpand" ColumnSpacing="10"
+                          Padding="10,0,10,10"
+                      VerticalOptions="End">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="45"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <ImageButton BackgroundColor="Transparent"  Command="{Binding GoBackCommand}" Source="home" Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center" 
+                                 HeightRequest="35" WidthRequest="35"/>
+                <StackLayout Grid.Column="1" Spacing="5" HorizontalOptions="Start" VerticalOptions="Center">
+                    <Label Margin="5,0,0,0" Text="Manual Selection Mode" LineBreakMode="TailTruncation" TextColor="White" FontSize="20" Style="{StaticResource TitleBold}" />
+                </StackLayout>
+            </Grid>
+
+        </Grid>
+
+
+
+        <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#ffffff">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+
+            </Grid.RowDefinitions>
+
+            <SearchBar Grid.Row="0" TextChanged="modelSearchBar_TextChanged" VerticalOptions="Start" x:Name="modelSearchBar" FontSize="18" Placeholder="Select Model" SearchCommandParameter="Model" SearchButtonPressed="modelSearchBar_SearchButtonPressed"/>
+
+            <SearchBar Grid.Row="1"  TextChanged="modelSearchBar_TextChanged" VerticalOptions="Start" x:Name="subModelSearchBar" FontSize="18" SearchCommandParameter="SubModel" Placeholder="Select Model" SearchButtonPressed="modelSearchBar_SearchButtonPressed"/>
+
+            <SearchBar Grid.Row="2" TextChanged="modelSearchBar_TextChanged" VerticalOptions="Start" x:Name="mdelYearSearchBar" FontSize="18" SearchCommandParameter="Year" Placeholder="Select Model" SearchButtonPressed="modelSearchBar_SearchButtonPressed"/>
+
+            <ListView Grid.Row="1" SelectionMode="None" ItemTapped="modelListView_ItemTapped" BackgroundColor="#ffffff" Grid.RowSpan="3" IsVisible="False"  VerticalOptions="Start" x:Name="modelListView" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10" BackgroundColor="#ffffff">
+                                <Label Text="{Binding .}" TextColor="Orange" FontSize="22"/>
+
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ListView Grid.Row="2" BackgroundColor="#ffffff" ItemTapped="modelListView_ItemTapped" Grid.RowSpan="2" VerticalOptions="Start" IsVisible="False" x:Name="subModelListView" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10" BackgroundColor="#ffffff">
+                                <Label Text="{Binding .}" TextColor="Orange" FontSize="22"/>
+
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ListView Grid.Row="3" BackgroundColor="#ffffff" ItemTapped="modelListView_ItemTapped" VerticalOptions="Start" IsVisible="False" SeparatorVisibility="Default" x:Name="modelYearListView" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10" BackgroundColor="#ffffff">
+                                <Label Text="{Binding .}" TextColor="Orange" FontSize="22"/>
+
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </Grid>
+
+
+
+
+
+        <Button Text="Submit" Grid.Row="2" Command="{Binding ManualSubmitCommand}" Margin="20,20,20,20"
+                FontFamily="FontExtraBold" HeightRequest="50" TextColor="#ffffff" 
+                BackgroundColor="{StaticResource PrimaryColor}" CornerRadius="25"/>
+
+    </Grid>
+
+</ContentPage>

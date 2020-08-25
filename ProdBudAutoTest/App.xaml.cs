@@ -37,6 +37,7 @@ namespace ProdBudAutoTest
             containerRegistry.RegisterForNavigation<CheckOperationPage, CheckOperationPageViewModel>();
             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
             containerRegistry.RegisterForNavigation<BarcodeScanPage, BarcodeScanPageViewModel>();
+             containerRegistry.RegisterForNavigation<ManualSelectionPage, ManualSelectionPageViewModel>();
         }
     }
 }

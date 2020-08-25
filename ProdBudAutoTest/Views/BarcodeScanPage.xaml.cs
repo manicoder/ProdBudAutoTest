@@ -1,6 +1,7 @@
 ﻿using ProdBudAutoTest.DPService;
 using ProdBudAutoTest.ViewModels;
 using Xamarin.Forms;
+using ZXing.Net.Mobile.Forms;
 
 namespace ProdBudAutoTest.Views
 {
@@ -10,6 +11,31 @@ namespace ProdBudAutoTest.Views
         {
             InitializeComponent();
             this.SizeChanged += BarcodeScanPage_SizeChanged;
+            var context = this.BindingContext as BarcodeScanPageViewModel;
+
+
+            scanView.OnScanResult += (result) => Device.BeginInvokeOnMainThread(async () =>
+{
+    if (!string.IsNullOrWhiteSpace(result.Text))
+    {
+        scanView.IsAnalyzing = false;
+        if (result.Text.Length == 17)
+            context.VinId = result.Text;
+        else
+        {
+            await context.PageDialogService.DisplayAlertAsync("Not Support", result.Text + " is not valid barcode. Please try again.", "OK");
+            scanView.IsAnalyzing = true;
+        }
+    }
+});
+
+
+
+            //defaultOverlay.ShowFlashButton = scanView.HasTorch;
+            //defaultOverlay.FlashButtonClicked += (sender, e) =>
+            //{
+            //    scanView.IsTorchOn = !scanView.IsTorchOn;
+            //};
 
         }
 
@@ -28,16 +54,18 @@ namespace ProdBudAutoTest.Views
         {
             base.OnAppearing();
             scanView.IsAnalyzing = true;
-            scanView.IsScanning = true;
+            scanView.AutoFocus();
+
             // animate(cornerImage);
         }
         bool isAnimation = true;
         protected override void OnDisappearing()
         {
+            //scanView.IsScanning = false;
+            //scanView.IsAnalyzing = false;
+            // isAnimation = false;
             base.OnDisappearing();
-            scanView.IsAnalyzing = false;
-            scanView.IsScanning = false;
-            isAnimation = false;
+
             //  this.AbortAnimation("fadeAnimation");
             //  fadeAnimation = null;
         }
@@ -74,16 +102,6 @@ namespace ProdBudAutoTest.Views
             //});
         }
 
-        void Handle_OnScanResult(ZXing.Result result)
-        {
-            if (txt.Text.Length == 17)
-            {
-                var context = this.BindingContext as BarcodeScanPageViewModel;
-                context.VinId = result.Text;
-                scanView.IsScanning = false;
-                this.AbortAnimation("fadeAnimation");
-            }
-        }
 
         private void CustomEntry_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -93,6 +111,7 @@ namespace ProdBudAutoTest.Views
                 popup.Focus();
                 var context = this.BindingContext as BarcodeScanPageViewModel;
                 context.GoToNextPgae();
+                //  scanView.IsAnalyzing = true;
                 // context.VinId = "";
             }
         }
