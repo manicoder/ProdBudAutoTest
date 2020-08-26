@@ -12,7 +12,7 @@
 
         <controls:HeaderView Grid.Row="0"/>
 
-        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="1" RowSpacing="15" Padding="10,10,5,0">
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="1" RowSpacing="15" Padding="5,10,5,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
