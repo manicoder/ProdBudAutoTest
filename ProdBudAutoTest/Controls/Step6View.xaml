@@ -127,8 +127,8 @@
             </ScrollView>
 
 
-          
-            <Button Text="Submit" Grid.Row="2" Command="{Binding GoHomePageCommand}" FontFamily="FontExtraBold" HeightRequest="50" TextColor="#ffffff" BackgroundColor="{StaticResource PrimaryColor}" CornerRadius="25"/>
+
+            <Button Text="Submit" Grid.Row="2" Command="{Binding GoHomePageCommand}" FontFamily="FontExtraBold" HeightRequest="50" TextColor="#ffffff" BackgroundColor="{StaticResource ButtonColor}" CornerRadius="25"/>
 
         </Grid>
     </ContentView.Content>

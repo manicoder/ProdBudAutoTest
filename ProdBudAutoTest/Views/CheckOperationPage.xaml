@@ -42,8 +42,8 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Text="Abort" Command="{Binding GoHomePageCommand}" FontFamily="FontExtraBold" HeightRequest="50" TextColor="#ffffff" BackgroundColor="{StaticResource PrimaryColor}" CornerRadius="25"/>
-                <Button Text="Continue >>" IsEnabled="{Binding IsBusy,Converter={StaticResource BoolToReverseVisibilityConverter}}" Command="{Binding StepProgressCommand}" CommandParameter="1" FontFamily="FontExtraBold" HeightRequest="50" TextColor="#ffffff" Grid.Column="1" BackgroundColor="OrangeRed" CornerRadius="25"/>
+                <Button Text="Abort" Command="{Binding GoHomePageCommand}" FontFamily="FontExtraBold" HeightRequest="50" TextColor="#ffffff" BackgroundColor="{StaticResource ButtonColor}" CornerRadius="25"/>
+                <Button Text="Continue >>" IsEnabled="{Binding IsBusy,Converter={StaticResource BoolToReverseVisibilityConverter}}" Command="{Binding StepProgressCommand}" CommandParameter="1" FontFamily="FontExtraBold" HeightRequest="50" TextColor="#ffffff" Grid.Column="1" BackgroundColor="{StaticResource HeaderColor}" CornerRadius="25"/>
             </Grid>
             <!--<StackLayout Orientation="Vertical">
                 <Button Text="1" Command="{Binding StepProgressCommand}" CommandParameter="1"/>

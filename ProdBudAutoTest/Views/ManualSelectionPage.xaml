@@ -94,7 +94,7 @@
 
         <Button Text="Submit" Grid.Row="2" Command="{Binding ManualSubmitCommand}" Margin="20,20,20,20"
                 FontFamily="FontExtraBold" HeightRequest="50" TextColor="#ffffff" 
-                BackgroundColor="{StaticResource PrimaryColor}" CornerRadius="25"/>
+                BackgroundColor="{StaticResource ButtonColor}" CornerRadius="25"/>
 
     </Grid>
 

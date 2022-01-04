@@ -65,7 +65,7 @@
 
         <Button Text="Manual Model Select" Grid.Row="4" Command="{Binding ShowManualCommand}" Margin="20,15,20,15"
                 FontFamily="FontExtraBold" HeightRequest="50" TextColor="#ffffff" 
-                BackgroundColor="{StaticResource PrimaryColor}" CornerRadius="25"/>
+                BackgroundColor="{StaticResource ButtonColor}" CornerRadius="25"/>
 
         <!--<local:ManualSelectionPopupView Grid.Row="0" Grid.RowSpan="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsVisible="{Binding IsShowManualSelection}"/>-->
 

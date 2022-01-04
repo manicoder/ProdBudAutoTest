@@ -21,12 +21,12 @@
                         <Button Text="Manual" HorizontalOptions="FillAndExpand"
                                 Command="{Binding PopupConfirmCommand}" CommandParameter="Manual"
                                 FontFamily="FontExtraBold"  TextColor="#ffffff"
-                                BackgroundColor="{StaticResource PrimaryColor}" CornerRadius="25"/>
+                                BackgroundColor="{StaticResource ButtonColor}" CornerRadius="25"/>
                         
                         <Button Grid.Column="1" HorizontalOptions="FillAndExpand" 
                                 Text="Confirm"
                                 Command="{Binding PopupConfirmCommand}" CommandParameter="Confirm" 
-                                FontFamily="FontExtraBold" TextColor="#ffffff" BackgroundColor="{StaticResource PrimaryColor}" CornerRadius="30"/>
+                                FontFamily="FontExtraBold" TextColor="#ffffff" BackgroundColor="{StaticResource ButtonColor}" CornerRadius="30"/>
 
                     </Grid>
                 </StackLayout>

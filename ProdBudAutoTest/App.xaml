@@ -31,6 +31,9 @@
 
             <Color x:Key="PrimaryColor">#ED7D31</Color>
             <Color x:Key="PrimaryLightColor">#F09659</Color>
+           
+            <Color x:Key="HeaderColor">#EE3A43</Color>
+            <Color x:Key="ButtonColor">#083A81</Color>
 
             <Color x:Key="StepLineColor">#69E781</Color>
             <Color x:Key="StepLineGrayColor">#E8E8E8</Color>
