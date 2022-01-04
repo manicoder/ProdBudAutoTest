@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProdBudAutoTest.Controls.StepProgress">
+    <ContentView.Content>
+        <StackLayout>
+            <ListView SeparatorVisibility="None"
+                           ItemsSource="{Binding StepProgressInfo}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame HasShadow="False" CornerRadius="0" BorderColor="LightGray" Margin="0"  Padding="0" HorizontalOptions="FillAndExpand">
+                                <StackLayout Orientation="Horizontal" Margin="4,0,0,0" VerticalOptions="Center">
+                                    <Label Text="{Binding Title}" Style="{StaticResource TitleNormal}" HorizontalOptions="Start"/>
+                                    <Label Text="{Binding Status}" Style="{StaticResource TitleNormal}" HorizontalOptions="Start"/>
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

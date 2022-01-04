@@ -18,7 +18,7 @@ namespace ProdBudAutoTest.ViewModels
         {
             Title = "Main Page";
 
-           
+
 
             StepsInitCommand();
             VehicleInfoList = new ObservableCollection<VehicleInfoModel>()
@@ -84,11 +84,24 @@ namespace ProdBudAutoTest.ViewModels
             };
 
 
-     
+            StepProgressInfo = new ObservableCollection<StepProgressInfo>()
+            {
+                new StepProgressInfo(){ Title = "Vehicle Info Verification - ", Status = "In Progress" },
+                new StepProgressInfo(){ Title = "Error Reading - ", Status = "In Progress" },
+                new StepProgressInfo(){ Title = "Static Test Precondition - ", Status = "In Progress" },
+                new StepProgressInfo(){ Title = "Operation Test - ", Status = "In Progress" },
+                new StepProgressInfo(){ Title = "Start Engine Pop up - ", Status = "In Progress" },
+                new StepProgressInfo(){ Title = "Regen Precondtion - ", Status = "In Progress" },
+                new StepProgressInfo(){ Title = "Precondition for idle RPM test - ", Status = "In Progress" },
+                new StepProgressInfo(){ Title = "Parameter at idel RPM @ 1 min - ", Status = "In Progress" },
+                new StepProgressInfo(){ Title = "Regen Button On - ", Status = "In Progress" },
+                new StepProgressInfo(){ Title = "Parameter Check - ", Status = "In Progress" },
+                new StepProgressInfo(){ Title = "Error Re-Verification - ", Status = "In Progress" }
+            };
 
         }
 
-       
+
 
 
         private ObservableCollection<VehicleInfoModel> mVehicleInfoList;
@@ -149,6 +162,18 @@ namespace ProdBudAutoTest.ViewModels
                 RaisePropertyChanged();
             }
         }
+
+        private ObservableCollection<StepProgressInfo> mStepProgressInfo;
+        public ObservableCollection<StepProgressInfo> StepProgressInfo
+        {
+            get { return mStepProgressInfo; }
+            set
+            {
+                mStepProgressInfo = value;
+                RaisePropertyChanged();
+            }
+        }
+
 
         private bool mIsShowStepButtons = true;
         public bool IsShowStepButtons

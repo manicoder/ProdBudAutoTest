@@ -12,7 +12,7 @@
 
             <Grid HorizontalOptions="FillAndExpand" HeightRequest="90"
                               
-                              BackgroundColor="{StaticResource PrimaryColor}">
+                              BackgroundColor="{StaticResource HeaderColor}">
                 <Grid HorizontalOptions="FillAndExpand" ColumnSpacing="10"
                           Padding="10,0,10,10"
                       VerticalOptions="End">

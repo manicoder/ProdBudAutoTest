@@ -16,7 +16,7 @@
         </Grid.RowDefinitions>
 
         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Start"
-              BackgroundColor="{StaticResource PrimaryColor}" HeightRequest="75">
+              BackgroundColor="{StaticResource HeaderColor}" HeightRequest="75">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
@@ -30,11 +30,11 @@
 
 
 
-        <Frame Grid.Row="1" HasShadow="False" Margin="10,15,10,10" Padding="5,2,5,2" BorderColor="{StaticResource PrimaryColor}" CornerRadius="0">
+        <Frame Grid.Row="1" HasShadow="False" Margin="10,15,10,10" Padding="5,2,5,2" BorderColor="{StaticResource HeaderColor}" CornerRadius="0">
             <local:CustomEntry x:Name="txt" Text="{Binding VinId}" MaxLength="17" TextChanged="CustomEntry_TextChanged" Placeholder="Enter VIN"  FontFamily="FontRegular" FontSize="17"/>
         </Frame>
 
-        <Label Grid.Row="2" Margin="20,0,20,10" Text="Enter VIN in the box above or hover your camera on the VIN bar code."
+        <Label Grid.Row="2" Margin="20,20,20,20" Text="Or hover your camera on the VIN Bar code"
                LineBreakMode="WordWrap" HorizontalOptions="Center" Style="{StaticResource TitleBold}" FontSize="14" VerticalOptions="Center"/>
 
 

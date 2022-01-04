@@ -13,7 +13,7 @@
 
         <Grid HorizontalOptions="FillAndExpand" HeightRequest="75"
                               
-                              BackgroundColor="{StaticResource PrimaryColor}">
+                              BackgroundColor="{StaticResource HeaderColor}">
             <Grid HorizontalOptions="FillAndExpand" ColumnSpacing="10"
                           Padding="10,0,10,10"
                       VerticalOptions="End">
@@ -29,10 +29,7 @@
                    FontSize="18" Style="{StaticResource TitleBold}" Margin="5,0,0,0"/>
                  </StackLayout>
             </Grid>
-
         </Grid>
-
-
 
         <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#ffffff">
             <Grid.RowDefinitions>
@@ -43,11 +40,11 @@
 
             </Grid.RowDefinitions>
 
-            <SearchBar Grid.Row="0" TextChanged="modelSearchBar_TextChanged" VerticalOptions="Start" x:Name="modelSearchBar" FontSize="16" Placeholder="Select Model" SearchCommandParameter="Model" SearchButtonPressed="modelSearchBar_SearchButtonPressed"/>
+            <SearchBar Grid.Row="0" TextChanged="modelSearchBar_TextChanged" VerticalOptions="Start" x:Name="modelSearchBar" FontSize="16" Placeholder="Select Segment" SearchCommandParameter="Model" SearchButtonPressed="modelSearchBar_SearchButtonPressed"/>
 
             <SearchBar Grid.Row="1"  TextChanged="modelSearchBar_TextChanged" VerticalOptions="Start" x:Name="subModelSearchBar" FontSize="16" SearchCommandParameter="SubModel" Placeholder="Select Model" SearchButtonPressed="modelSearchBar_SearchButtonPressed"/>
 
-            <SearchBar Grid.Row="2" TextChanged="modelSearchBar_TextChanged" VerticalOptions="Start" x:Name="mdelYearSearchBar" FontSize="16" SearchCommandParameter="Year" Placeholder="Select Model" SearchButtonPressed="modelSearchBar_SearchButtonPressed"/>
+            <SearchBar Grid.Row="2" TextChanged="modelSearchBar_TextChanged" VerticalOptions="Start" x:Name="mdelYearSearchBar" FontSize="16" SearchCommandParameter="Year" Placeholder="Select Sub Model" SearchButtonPressed="modelSearchBar_SearchButtonPressed"/>
 
             <ListView Grid.Row="1" SelectionMode="None" ItemTapped="modelListView_ItemTapped" BackgroundColor="#ffffff" Grid.RowSpan="3" IsVisible="False"  VerticalOptions="Start" x:Name="modelListView" HasUnevenRows="True">
                 <ListView.ItemTemplate>

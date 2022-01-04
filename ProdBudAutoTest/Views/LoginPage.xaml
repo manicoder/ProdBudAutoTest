@@ -10,15 +10,15 @@
         <StackLayout HorizontalOptions="FillAndExpand" Margin="0,-40,0,0" VerticalOptions="Center"
                      Padding="20,10,20,10" Spacing="25">
             <Image Source="logo" Aspect="AspectFit" 
-               HeightRequest="40" 
+               HeightRequest="60" 
                HorizontalOptions="Center"
                VerticalOptions="Start" Margin="0,0,0,20"/>
             <!--<local:TextBox PlaceHolder="Login"/>
             <local:TextBox PlaceHolder="Password ID" IsPassword="true"/>-->
-            <Frame HasShadow="False" Padding="5,2,5,2" BorderColor="{StaticResource PrimaryColor}" CornerRadius="0">
+            <Frame HasShadow="False" Padding="5,2,5,2" BorderColor="{StaticResource ButtonColor}" CornerRadius="0">
                 <local:CustomEntry Text="{Binding LoginId}" Placeholder="Login ID" HeightRequest="45" FontFamily="FontRegular" FontSize="18"/>
             </Frame>
-            <Frame HasShadow="False" Padding="5,2,5,2" BorderColor="{StaticResource PrimaryColor}" CornerRadius="0">
+            <Frame HasShadow="False" Padding="5,2,5,2" BorderColor="{StaticResource ButtonColor}" CornerRadius="0">
                 <local:CustomEntry Text="{Binding Password}" Placeholder="Password" IsPassword="true" HeightRequest="45" FontFamily="FontRegular" FontSize="18"  />
             </Frame>
             <Grid HorizontalOptions="FillAndExpand">

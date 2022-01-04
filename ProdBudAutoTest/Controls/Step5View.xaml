@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:ProdBudAutoTest.Controls"
              x:Class="ProdBudAutoTest.Controls.Step5View">
   <ContentView.Content>
         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="15">
@@ -12,6 +13,27 @@
                FontFamily="FontExtraBold"/>
             <Frame Grid.Row="1" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <ListView  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ItemsSource="{Binding VehicleInfoList5}">
+                    <ListView.Header>
+                        <Grid HorizontalOptions="FillAndExpand" ColumnSpacing="-1">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="142"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="60"/>
+                            </Grid.ColumnDefinitions>
+                            <Frame Grid.Column="0" HasShadow="False" CornerRadius="0" BorderColor="LightGray" Padding="5,10,5,10" HorizontalOptions="FillAndExpand" >
+                                <Label Text="Parameter" LineBreakMode="WordWrap"  Style="{StaticResource TitleNormal}" VerticalOptions="Center"/>
+                            </Frame>
+                            <Frame Grid.Column="1" HasShadow="False" CornerRadius="0" BorderColor="LightGray"  Padding="5,10,5,10" HorizontalOptions="FillAndExpand">
+                                <Label Text="Value" Style="{StaticResource TitleNormal}" HorizontalOptions="Center"/>
+                            </Frame>
+
+                            <Frame Grid.Column="2" HasShadow="False" CornerRadius="0" BorderColor="LightGray"  Padding="5,10,5,10" HorizontalOptions="FillAndExpand">
+                                <Label Text="Status" Style="{StaticResource TitleNormal}" HorizontalOptions="Center"/>
+                            </Frame>
+                        </Grid>
+
+                    </ListView.Header>
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -49,7 +71,11 @@
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
-
+                    <ListView.Footer>
+                        <StackLayout Margin="0,20,0,0">
+                            <controls:StepProgress/>
+                        </StackLayout>
+                    </ListView.Footer>
                 </ListView>
 
             </Frame>
