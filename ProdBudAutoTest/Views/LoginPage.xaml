@@ -38,7 +38,8 @@
                 </Label>
             </Grid>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Start" Spacing="0">
-                <CheckBox x:Name="cbkRemeber" IsChecked="{Binding IsUserRemeber,Mode=TwoWay}" VerticalOptions="Center" CheckedChanged="CheckBox_CheckedChanged"/>
+                <CheckBox x:Name="rememberCheckBox" IsChecked="{Binding IsRemember}"
+                          Color="{StaticResource ButtonColor}" VerticalOptions="Center"/>
                 <Label Text="Remember me"  Style="{StaticResource TitleNormal}" HorizontalOptions="End" FontSize="18" FontAttributes="Bold" VerticalOptions="Center"/>
             </StackLayout>
             <Button Text="Login" Command="{Binding LoginCommand}" FontFamily="FontExtraBold" HeightRequest="50" TextColor="#ffffff" BackgroundColor="{StaticResource ButtonColor}" CornerRadius="25"/>

@@ -2,6 +2,7 @@
 using Prism.Mvvm;
 using Prism.Navigation;
 using Prism.Services;
+using Prodat.AppHelpers;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -33,6 +34,17 @@ namespace ProdBudAutoTest.ViewModels
             }
         }
 
+        private string mUserToken;
+        public string UserToken
+        {
+            get { return mUserToken; }
+            set
+            {
+                mUserToken = value;
+                RaisePropertyChanged();
+            }
+        }
+
         public ViewModelBase(INavigationService navigationService)
         {
             NavigationService = navigationService;
@@ -46,6 +58,8 @@ namespace ProdBudAutoTest.ViewModels
         }
         private void InitView()
         {
+            UserToken = KeyStorage.Get("token");
+
             GoHomePageCommand = new Command(() => { NavigationService.GoBackToRootAsync(); });
             GoBackCommand = new Command(() => { NavigationService.GoBackAsync(); });
 

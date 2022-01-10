@@ -2,6 +2,9 @@
 using Prism.Mvvm;
 using Prism.Navigation;
 using Prism.Services;
+using Prodat.AppHelpers;
+using Prodat.Models;
+using Proddat.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,35 +17,14 @@ namespace ProdBudAutoTest.ViewModels
 {
     public class LoginPageViewModel : ViewModelBase
     {
-        public LoginPageViewModel(INavigationService navigationService, IPageDialogService pageDialogService)
+        IApiServices apiServices;
+        public LoginPageViewModel(INavigationService navigationService, IPageDialogService pageDialogService, IApiServices apiServices)
             : base(navigationService, pageDialogService)
         {
+            this.apiServices = apiServices;
             LoginCommand = new Command(async () =>
             {
-                if (string.IsNullOrEmpty(LoginId))
-                {
-                    await PageDialogService.DisplayAlertAsync("Required", "Please enter Login ID", "OK");
-                }
-                else if (string.IsNullOrEmpty(Password))
-                {
-                    await PageDialogService.DisplayAlertAsync("Required", "Please enter Password", "OK");
-                }
-                else
-                {
-                    if (this.IsUserRemeber)
-                    {
-                        try
-                        {
-                            await SecureStorage.SetAsync("logingId", this.LoginId);
-                            await SecureStorage.SetAsync("pwd", this.Password);
-                        }
-                        catch (Exception ex)
-                        {
-                            // Possible that device doesn't support secure storage on device.
-                        }
-                    }
-                    NavigationService.NavigateAsync("../BarcodeScanPage");
-                }
+                OnLoginClicked();
             });
 
             ResetPasswordCommand = new Command(() =>
@@ -73,14 +55,9 @@ namespace ProdBudAutoTest.ViewModels
             base.OnNavigatedTo(parameters);
             await CheckAndRequestLocationPermission();
 
-            var isChecked = await SecureStorage.GetAsync("IsRememberLogin");
-            if (isChecked == "true")
-            {
-                IsUserRemeber = true;
-                this.LoginId = await SecureStorage.GetAsync("logingId");
-                this.Password = await SecureStorage.GetAsync("pwd");
-            }
+            CheckRemeberUser();
         }
+
         private string mLoginId;
         public string LoginId
         {
@@ -102,13 +79,21 @@ namespace ProdBudAutoTest.ViewModels
                 RaisePropertyChanged();
             }
         }
-        private bool mIsUserRemeber;
-        public bool IsUserRemeber
+
+        private bool mIsRemember;
+        public bool IsRemember
         {
-            get { return mIsUserRemeber; }
+            get { return mIsRemember; }
             set
             {
-                mIsUserRemeber = value;
+                mIsRemember = value;
+                if (!value)
+                {
+                    if (!string.IsNullOrEmpty(LoginId) && !string.IsNullOrEmpty(Password))
+                    {
+                        RemoveEasyLogin();
+                    }
+                }
                 RaisePropertyChanged();
             }
         }
@@ -117,5 +102,93 @@ namespace ProdBudAutoTest.ViewModels
         public ICommand ResetPasswordCommand { get; set; }
         public ICommand RegisterCommand { get; set; }
 
+        private async void OnLoginClicked()
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(LoginId))
+                {
+                    await PageDialogService.DisplayAlertAsync("Required", "Please enter Login ID", "OK");
+                }
+                else if (string.IsNullOrEmpty(Password))
+                {
+                    await PageDialogService.DisplayAlertAsync("Required", "Please enter Password", "OK");
+                }
+                else
+                {
+                    this.IsBusy = true;
+                    await Task.Delay(10);
+                    var mainPage = Application.Current.MainPage;
+                    var user = new UserModel()
+                    {
+                        device_type = AppConstants.DeviceType,
+                        mac_id = AppConstants.MacID,
+                        station_id = AppConstants.StationID,
+                        username = this.LoginId,
+                        password = this.Password
+                    };
+                    var userData = await apiServices.LoginAsync(user);
+                    if (userData != null && !string.IsNullOrEmpty(userData.error))
+                    {
+                        await PageDialogService.DisplayAlertAsync("Login failed!", userData.error, "OK");
+                        IsBusy = false;
+                    }
+                    else
+                    {
+                        KeyStorage.Set("token", userData.token);
+                        KeyStorage.Set("firstName", userData.first_name);
+                        await SetEasyLogin();
+
+                        IsBusy = false;
+                        KeyStorage.Set("login", "login");
+
+                        await NavigationService.NavigateAsync("../BarcodeScanPage");
+
+                        //remove login after success login
+                        // var lastPage = (mainPage as NavigationPage).RootPage;
+                        // mainPage.Navigation.RemovePage(lastPage);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                PageDialogService.DisplayAlertAsync("Error", ex.Message, "OK");
+                IsBusy = false;
+            }
+        }
+
+        #region Easy Login Module
+        public async void CheckRemeberUser()
+        {
+            var user_key = KeyStorage.Get("remember");
+            if (!string.IsNullOrEmpty(user_key) && user_key.Equals("yes"))
+            {
+                LoginId = KeyStorage.Get("userName");
+                Password = KeyStorage.Get("password");
+                IsRemember = true;
+            }
+        }
+        private async Task SetEasyLogin()
+        {
+            if (IsRemember)
+            {
+                KeyStorage.Set("userName", LoginId);
+                KeyStorage.Set("password", Password);
+                KeyStorage.Set("remember", "yes");
+            }
+            else
+            {
+                KeyStorage.Remove("userName");
+                KeyStorage.Remove("password");
+                KeyStorage.Remove("remember");
+            }
+        }
+        private static void RemoveEasyLogin()
+        {
+            KeyStorage.Remove("userName");
+            KeyStorage.Remove("password");
+            KeyStorage.Remove("remember");
+        }
+        #endregion
     }
 }

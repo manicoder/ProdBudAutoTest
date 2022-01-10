@@ -2,6 +2,7 @@
 using Prism.Mvvm;
 using Prism.Navigation;
 using Prism.Services;
+using Prodat.AppHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,6 +49,8 @@ namespace ProdBudAutoTest.ViewModels
             });
             LogoutCommand = new Command(() =>
             {
+                KeyStorage.Remove("token");
+                KeyStorage.Remove("firstName");
                 NavigationService.NavigateAsync("../LoginPage");
             });
             ToggleMenuCommand = new Command(() =>

@@ -6,6 +6,10 @@ using Xamarin.Essentials.Interfaces;
 using Xamarin.Essentials.Implementation;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Prodat.Services;
+using System;
+using Prodat.AppHelpers;
+using Proddat.Services;
 
 [assembly: ExportFont("Lato-Bold.ttf", Alias = "FontBold")]
 [assembly: ExportFont("Lato-Regular.ttf", Alias = "FontRegular")]
@@ -16,16 +20,33 @@ namespace ProdBudAutoTest
 {
     public partial class App
     {
+        public static string JwtToken = string.Empty;
         public App(IPlatformInitializer initializer)
             : base(initializer)
         {
         }
 
-        protected override async void OnInitialized()
+        protected override void OnInitialized()
         {
             InitializeComponent();
+            NavigationController();
+        }
 
-            await NavigationService.NavigateAsync("NavigationPage/LoginPage");
+        private async void NavigationController()
+        {
+            try
+            {
+                var user_key = KeyStorage.Get("firstName");
+                if (!string.IsNullOrEmpty(user_key))
+                {
+                    await NavigationService.NavigateAsync("NavigationPage/BarcodeScanPage");
+                }
+                else
+                {
+                    await NavigationService.NavigateAsync("NavigationPage/LoginPage");
+                }
+            }
+            catch (Exception ex) { }
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -37,7 +58,10 @@ namespace ProdBudAutoTest
             containerRegistry.RegisterForNavigation<CheckOperationPage, CheckOperationPageViewModel>();
             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
             containerRegistry.RegisterForNavigation<BarcodeScanPage, BarcodeScanPageViewModel>();
-             containerRegistry.RegisterForNavigation<ManualSelectionPage, ManualSelectionPageViewModel>();
+            containerRegistry.RegisterForNavigation<ManualSelectionPage, ManualSelectionPageViewModel>();
+
+            //services
+            containerRegistry.Register<IApiServices, ApiServices>();
         }
     }
 }
