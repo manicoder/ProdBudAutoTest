@@ -2,6 +2,7 @@
 using Prodat;
 using Prodat.AppHelpers;
 using Prodat.Models;
+using ProdBudAutoTest.Models;
 using Proddat.Services;
 using System;
 using System.Collections.Generic;
@@ -30,12 +31,11 @@ namespace Prodat.Services
                 client = new HttpClient();
                 var json = JsonConvert.SerializeObject(model);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
-                var response = client.PostAsync($"{BaseUrl}accounts/prodbud-login/", content).Result;//.ConfigureAwait(false);
+                var response = await client.PostAsync($"{BaseUrl}accounts/prodbud-login/", content);//.ConfigureAwait(false);
                 var Data = await response.Content.ReadAsStringAsync();
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     var UserInfo = JsonConvert.DeserializeObject<UserMessageResponse>(Data);
-
                     KeyStorage.Set("token", UserInfo.token);
                     loginRespons = UserInfo;
                 }
@@ -54,15 +54,15 @@ namespace Prodat.Services
             }
         }
 
-        public async Task<StationData> GetAllStationsAsync(string token)
+        public async Task<StationData> GetAllStationsAsync()
         {
             try
             {
                 client = new HttpClient();
-                var response = client.GetAsync($"{BaseUrl}stations/all-station-list").Result;
+                var response = await client.GetAsync($"{BaseUrl}stations/all-station-list");
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
-                    string data = response.Content.ReadAsStringAsync().Result;
+                    string data = await response.Content.ReadAsStringAsync();
                     var stationData = JsonConvert.DeserializeObject<StationData>(data);
                     return stationData;
                 }
@@ -73,7 +73,12 @@ namespace Prodat.Services
                 return null;
             }
         }
-        public async Task<string> GetAllStationsRawAsync(string token)
+        public async Task<StationData> GetStationDataAsync()
+        {
+            var data = await FileSystemHelper.Instance.ReadDataAsync(AppConstants.StationsFileName);
+            return JsonConvert.DeserializeObject<StationData>(data);
+        }
+        public async Task<string> GetAllStationsRawAsync()
         {
             try
             {
@@ -82,8 +87,34 @@ namespace Prodat.Services
                 var response = client.GetAsync($"{BaseUrl}stations/all-station-list").Result;
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
-                    string data = response.Content.ReadAsStringAsync().Result;
+                    string data = await response.Content.ReadAsStringAsync();
+                    if (data != null)
+                    {
+                        //Store locally
+                        await FileSystemHelper.Instance.SaveDataAsync(AppConstants.StationsFileName, data);
+                    }
                     return data;
+                }
+                else return null;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public async Task<VinResponse> GetVinNumberAsync(string token, string vinNumber)
+        {
+            try
+            {
+                client = new HttpClient();
+                client.DefaultRequestHeaders.Add("Authorization", "JWT " + token);
+                var response = await client.GetAsync($"{BaseUrl}fert_model/get-delphi/?chassis_id=" + vinNumber);
+                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    string data = await response.Content.ReadAsStringAsync();
+                    var stationData = JsonConvert.DeserializeObject<VinResponse>(data);
+                    return stationData;
                 }
                 else return null;
             }

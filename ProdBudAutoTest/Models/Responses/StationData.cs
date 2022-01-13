@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace Prodat.Models
 {
     public class StationData
@@ -17,19 +19,19 @@ namespace Prodat.Models
 
     public class Process
     {
-        public Sp_Process[] sp_process { get; set; }
+        public List<Sp_Process> sp_process { get; set; }
     }
 
     public class Sp_Process
     {
-        public Station_Process[] station_process { get; set; }
+        public  List<Station_Process> station_process { get; set; }
         public int ecu { get; set; }
         public int year { get; set; }
     }
 
     public class Station_Process
     {
-        public Station_Process_Steps[] station_process_steps { get; set; }
+        public List<Station_Process_Steps> station_process_steps { get; set; }
         public string name { get; set; }
         public int priority { get; set; }
         public string station_author_step_type { get; set; }

@@ -5,13 +5,13 @@
     <ContentView.Content>
         <StackLayout>
             <ListView SeparatorVisibility="None"
-                           ItemsSource="{Binding StepProgressInfo}">
+                           ItemsSource="{Binding}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <Frame HasShadow="False" CornerRadius="0" BorderColor="LightGray" Margin="0"  Padding="0" HorizontalOptions="FillAndExpand">
                                 <StackLayout Orientation="Horizontal" Margin="4,0,0,0" VerticalOptions="Center">
-                                    <Label Text="{Binding Title}" Style="{StaticResource TitleNormal}" HorizontalOptions="Start"/>
+                                    <Label Text="{Binding name}" Style="{StaticResource TitleNormal}" HorizontalOptions="Start"/>
                                     <Label Text="{Binding Status}" Style="{StaticResource TitleNormal}" HorizontalOptions="Start"/>
                                 </StackLayout>
                             </Frame>

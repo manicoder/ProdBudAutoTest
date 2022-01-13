@@ -15,22 +15,19 @@ namespace ProdBudAutoTest.Views
 
 
             scanView.OnScanResult += (result) => Device.BeginInvokeOnMainThread(async () =>
-{
-    if (!string.IsNullOrWhiteSpace(result.Text))
-    {
-        scanView.IsAnalyzing = false;
-        if (result.Text.Length == 17)
-            context.VinId = result.Text;
-        else
-        {
-            await context.PageDialogService.DisplayAlertAsync("Not Support", result.Text + " is not valid barcode. Please try again.", "OK");
-            scanView.IsAnalyzing = true;
-        }
-    }
-});
-
-
-
+            {
+                if (!string.IsNullOrWhiteSpace(result.Text))
+                {
+                    scanView.IsAnalyzing = false;
+                    if (result.Text.Length == 17)
+                        context.VinId = result.Text;
+                    else
+                    {
+                        await context.PageDialogService.DisplayAlertAsync("Not Support", result.Text + " is not valid barcode. Please try again.", "OK");
+                        scanView.IsAnalyzing = true;
+                    }
+                }
+            });
             //defaultOverlay.ShowFlashButton = scanView.HasTorch;
             //defaultOverlay.FlashButtonClicked += (sender, e) =>
             //{

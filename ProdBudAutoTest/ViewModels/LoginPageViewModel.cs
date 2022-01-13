@@ -117,7 +117,7 @@ namespace ProdBudAutoTest.ViewModels
                 else
                 {
                     this.IsBusy = true;
-                    await Task.Delay(10);
+                    await Task.Delay(500);
                     var mainPage = Application.Current.MainPage;
                     var user = new UserModel()
                     {
@@ -135,13 +135,15 @@ namespace ProdBudAutoTest.ViewModels
                     }
                     else
                     {
+                        var id = userData.station_list.FirstOrDefault().id;
                         KeyStorage.Set("token", userData.token);
                         KeyStorage.Set("firstName", userData.first_name);
+                        KeyStorage.Set("ID", Convert.ToString(id));
+
                         await SetEasyLogin();
 
+                        getApiCalls();
                         IsBusy = false;
-                        KeyStorage.Set("login", "login");
-
                         await NavigationService.NavigateAsync("../BarcodeScanPage");
 
                         //remove login after success login
@@ -156,6 +158,14 @@ namespace ProdBudAutoTest.ViewModels
                 IsBusy = false;
             }
         }
+
+        #region GetAPiCalls
+        public async void getApiCalls()
+        {
+            //get all stations
+            var stations = await apiServices.GetAllStationsRawAsync();
+        }
+        #endregion
 
         #region Easy Login Module
         public async void CheckRemeberUser()

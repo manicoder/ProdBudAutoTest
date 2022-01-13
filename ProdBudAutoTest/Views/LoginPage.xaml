@@ -45,5 +45,9 @@
             <Button Text="Login" Command="{Binding LoginCommand}" FontFamily="FontExtraBold" HeightRequest="50" TextColor="#ffffff" BackgroundColor="{StaticResource ButtonColor}" CornerRadius="25"/>
 
         </StackLayout>
+        <Grid IsVisible="{Binding IsBusy,Mode=TwoWay}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#70000000">
+            <ActivityIndicator IsVisible="{Binding IsBusy,Mode=TwoWay}" IsRunning="{Binding IsBusy,Mode=TwoWay}" HeightRequest="130" WidthRequest="130" Color="#083A81" HorizontalOptions="Center" VerticalOptions="Center"/>
+
+        </Grid>
     </Grid>
 </ContentPage>

@@ -16,19 +16,19 @@ namespace Prodat.Services
         {
             apiServices = services;
         }
-        public Task<UserMessageResponse> Login(UserModel model)
+        public async Task<UserMessageResponse> Login(UserModel model)
         {
-            return apiServices.LoginAsync(model);
+            return await apiServices.LoginAsync(model);
         }
         public async Task<StationData> GetAllStations()
         {
             var token = KeyStorage.Get("token");
-            return await apiServices.GetAllStationsAsync(token);
+            return await apiServices.GetAllStationsAsync();
         }
         public async Task<string> GetAllStationsRaw()
         {
             var token = KeyStorage.Get("token");
-            return await apiServices.GetAllStationsRawAsync(token);
+            return await apiServices.GetAllStationsRawAsync();
         }
     }
 }

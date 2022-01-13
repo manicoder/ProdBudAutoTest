@@ -18,9 +18,16 @@ namespace ProdBudAutoTest.ViewModels
         {
             Title = "Main Page";
 
-
-
             StepsInitCommand();
+
+        }
+        public override void OnNavigatedTo(INavigationParameters parameters)
+        {
+            base.OnNavigatedTo(parameters);
+           // InitiliaseProcess();
+        }
+        private void InitiliaseProcess()
+        {
             VehicleInfoList = new ObservableCollection<VehicleInfoModel>()
             {
                 new VehicleInfoModel(){ TestType = "VIN No.", Desc = "MC2XXXX", Result = "Pass", IsPass = true },
@@ -98,11 +105,7 @@ namespace ProdBudAutoTest.ViewModels
                 new StepProgressInfo(){ Title = "Parameter Check - ", Status = "In Progress" },
                 new StepProgressInfo(){ Title = "Error Re-Verification - ", Status = "In Progress" }
             };
-
         }
-
-
-
 
         private ObservableCollection<VehicleInfoModel> mVehicleInfoList;
         public ObservableCollection<VehicleInfoModel> VehicleInfoList

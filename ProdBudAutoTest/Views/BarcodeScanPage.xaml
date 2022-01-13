@@ -71,6 +71,9 @@
 
         <local:ALertPopupView x:Name="popup" HorizontalOptions="FillAndExpand" Grid.RowSpan="5" VerticalOptions="FillAndExpand" IsVisible="{Binding IsConfirmPopupVisible}"/>
         <Button Text="Logout" WidthRequest="140" IsVisible="{Binding IsShowLogoutButton}" Command="{Binding LogoutCommand}" BackgroundColor="#2e325b" TextColor="#ffffff"  HeightRequest="50" FontFamily="FontBold" Grid.RowSpan="5" HorizontalOptions="End" VerticalOptions="Start" Margin="0,75,0,0"/>
+        <Grid Grid.RowSpan="5" IsVisible="{Binding IsBusy,Mode=TwoWay}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#70000000">
+            <ActivityIndicator IsVisible="{Binding IsBusy,Mode=TwoWay}" IsRunning="{Binding IsBusy,Mode=TwoWay}" HeightRequest="130" WidthRequest="130" Color="#083A81" HorizontalOptions="Center" VerticalOptions="Center"/>
 
+        </Grid>
     </Grid>
 </ContentPage>

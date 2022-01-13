@@ -3,6 +3,8 @@ using Prism.Mvvm;
 using Prism.Navigation;
 using Prism.Services;
 using Prodat.AppHelpers;
+using Prodat.Models;
+using Proddat.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,12 +17,14 @@ namespace ProdBudAutoTest.ViewModels
 {
     public class BarcodeScanPageViewModel : ViewModelBase
     {
-        public BarcodeScanPageViewModel(INavigationService navigationService, IPageDialogService pageDialogService) : base(navigationService, pageDialogService)
+        IApiServices _apiServices;
+        public BarcodeScanPageViewModel(INavigationService navigationService, IPageDialogService pageDialogService, IApiServices apiServices) : base(navigationService, pageDialogService)
         {
+            _apiServices = apiServices;
             IsShowLogoutButton = false;
             PopupConfirmCommand = new Command((obj) =>
             {
-                GoToNextPgae();
+                ConfirmManualPopup();
                 if (obj is string param)
                 {
                     if (param == "Confirm")
@@ -89,8 +93,69 @@ namespace ProdBudAutoTest.ViewModels
 
             return status;
         }
+        //       Prodat.Models.Sp_Process
+        private Sp_Process mCurrentProcess;
+        public Sp_Process CurrentProcess
+        {
+            get { return mCurrentProcess; }
+            set
+            {
+                mCurrentProcess = value;
+                RaisePropertyChanged();
+            }
+        }
+
 
         public async void GoToNextPgae()
+        {
+            IsBusy = true;
+            try
+            {
+                await Task.Delay(500);
+                var token = KeyStorage.Get("token");
+                var vinResponse = await this._apiServices.GetVinNumberAsync(token, this.VinId);
+                var year = vinResponse.results.FirstOrDefault().model_year;
+                if (!string.IsNullOrEmpty(Convert.ToString(year)))
+                {
+                    KeyStorage.Set("year", Convert.ToString(year));
+                    var id = KeyStorage.Get("ID");
+                    var allStations = await this._apiServices.GetStationDataAsync();
+                    foreach (var item in allStations.results)
+                    {
+                        if (item.id == Convert.ToInt32(id))
+                        {
+                            foreach (var pro in item.process.sp_process)
+                            {
+                                if (pro.year == Convert.ToInt32(year))
+                                {
+                                    Services.CurrentProcess.Instance.Proccess = pro;
+                                    break;
+                                }
+                            }
+                        }
+
+                    }
+                    /*
+                      for i in self.process_data:
+                if str(i["id"]) == str(self.station_id):
+                    for j in i["process"]["sp_process"]:
+                        if str(j["year"]) == str(self.year_id):
+                            self.station_process = j['station_process']
+                            self.isStationProcessSuccess = True
+                            print("got process data")
+                     */
+                }
+            }
+            catch (Exception ex)
+            {
+                IsBusy = false;
+            }
+            IsBusy = false;
+            ConfirmManualPopup();
+
+        }
+
+        private void ConfirmManualPopup()
         {
             if (IsConfirmPopupVisible)
             {
