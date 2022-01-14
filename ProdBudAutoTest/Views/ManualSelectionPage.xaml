@@ -39,8 +39,15 @@
                 <RowDefinition Height="Auto"/>
 
             </Grid.RowDefinitions>
-
-            <SearchBar Grid.Row="0" TextChanged="modelSearchBar_TextChanged" VerticalOptions="Start" x:Name="modelSearchBar" FontSize="16" Placeholder="Select Segment" SearchCommandParameter="Model" SearchButtonPressed="modelSearchBar_SearchButtonPressed"/>
+            <Picker Grid.Row="0" Title="Select Segment" ItemsSource="{Binding Segments}" SelectedItem="{Binding SelectedSegment}"/>
+            <Picker Grid.Row="1" Title="Select Model" ItemsSource="{Binding SubModels}" SelectedItem="{Binding SelectedSubModel}"/>
+            <Picker Grid.Row="2" Title="Select Sub-Model" ItemsSource="{Binding Years}" SelectedItem="{Binding SelectedYear}"/>
+            <StackLayout Grid.Row="3">
+                <Label Text="{Binding SelectedSegment}"/>
+                <Label Text="{Binding SelectedModel}"/>
+                <Label Text="{Binding SelectedYear}"/>
+            </StackLayout>
+            <!--<SearchBar Grid.Row="0" TextChanged="modelSearchBar_TextChanged" VerticalOptions="Start" x:Name="modelSearchBar" FontSize="16" Placeholder="Select Segment" SearchCommandParameter="Model" SearchButtonPressed="modelSearchBar_SearchButtonPressed"/>
 
             <SearchBar Grid.Row="1"  TextChanged="modelSearchBar_TextChanged" VerticalOptions="Start" x:Name="subModelSearchBar" FontSize="16" SearchCommandParameter="SubModel" Placeholder="Select Model" SearchButtonPressed="modelSearchBar_SearchButtonPressed"/>
 
@@ -81,7 +88,7 @@
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-            </ListView>
+            </ListView>-->
 
         </Grid>
 

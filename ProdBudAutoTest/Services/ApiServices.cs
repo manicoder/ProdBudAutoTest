@@ -123,5 +123,51 @@ namespace Prodat.Services
                 return null;
             }
         }
+
+        public async Task<ModelsResponse> GetAllModelsAsync()
+        {
+            try
+            {
+
+                if (FileSystemHelper.Instance.IsFileExists(AppConstants.ModelsFilename))
+                {
+                    var data = await FileSystemHelper.Instance.ReadDataAsync(AppConstants.ModelsFilename);
+                    if (!string.IsNullOrEmpty(data))
+                    {
+                        var modelData = JsonConvert.DeserializeObject<ModelsResponse>(data);
+                        return modelData;
+                    }
+                    else {
+                        return await GetModelServiceData();
+                    }
+                }
+                else
+                {
+                  return await GetModelServiceData();
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        private async Task<ModelsResponse> GetModelServiceData() {
+            client = new HttpClient();
+            var response = client.GetAsync($"{BaseUrl}models/get-models").Result;
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                string data = await response.Content.ReadAsStringAsync();
+                if (!string.IsNullOrEmpty(data))
+                {
+                    await FileSystemHelper.Instance.SaveDataAsync(AppConstants.ModelsFilename, data);
+                    var modelData = JsonConvert.DeserializeObject<ModelsResponse>(data);
+                    return modelData;
+                }
+                else return null;
+            }
+            else return null;
+        }
     }
 }

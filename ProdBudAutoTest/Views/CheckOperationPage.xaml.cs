@@ -27,6 +27,7 @@ namespace ProdBudAutoTest.Views
             stepProcessFooter.BindingContext = orderByProcess;
             foreach (var process in orderByProcess)
             {
+                process.station_process_steps = process.station_process_steps.Where(x => x.description != null).OrderBy(x => x.priority).ToList();
                 var procesStepControl = new ProcessStepControl
                 {
                     BindingContext = process

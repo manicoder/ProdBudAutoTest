@@ -15,6 +15,6 @@ namespace Proddat.Services
         Task<string> GetAllStationsRawAsync();
         Task<StationData> GetStationDataAsync();
         Task<VinResponse> GetVinNumberAsync(string token, string vinNumber);
-
+        Task<ModelsResponse> GetAllModelsAsync();
     }
 }
