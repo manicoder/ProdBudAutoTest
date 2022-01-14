@@ -12,7 +12,7 @@
             <Label Grid.Row="0" Text="{Binding name}" FontSize="19" TextColor="#000000"
                FontFamily="FontExtraBold"/>
             <Frame Grid.Row="1" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                <ListView  HorizontalOptions="FillAndExpand" 
+                <ListView  HorizontalOptions="FillAndExpand" HasUnevenRows="True"
                            VerticalOptions="FillAndExpand" 
                            ItemsSource="{Binding station_process_steps}">
                     <ListView.Header>

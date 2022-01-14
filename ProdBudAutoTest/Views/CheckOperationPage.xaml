@@ -4,7 +4,7 @@
              xmlns:prism="http://prismlibrary.com" xmlns:controls="clr-namespace:ProdBudAutoTest.Controls" xmlns:cv="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
              prism:ViewModelLocator.AutowireViewModel="True" NavigationPage.HasNavigationBar="False"
              x:Class="ProdBudAutoTest.Views.CheckOperationPage" Background="#ffffff">
-    <Grid Padding="0,0,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="15">
+    <Grid Padding="0,0,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -12,10 +12,10 @@
         </Grid.RowDefinitions>
 
         <controls:HeaderView Grid.Row="0"/>
-        <ScrollView Grid.Row="1" Padding="10" VerticalScrollBarVisibility="Default">
+        <ScrollView Grid.Row="1" Padding="10,10,10,0" VerticalScrollBarVisibility="Default">
             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <Frame HorizontalOptions="FillAndExpand" HasShadow="False" SizeChanged="Frame_SizeChanged" BackgroundColor="Transparent" VerticalOptions="FillAndExpand" Padding="0">
-                    <cv:CarouselViewControl x:Name="crouselView" HeightRequest="450" SizeChanged="crouselView_SizeChanged" IsSwipeEnabled="False" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Position="{Binding CurrentStepPosition}">
+                    <cv:CarouselViewControl x:Name="crouselView" HeightRequest="450" VerticalOptions="FillAndExpand" SizeChanged="crouselView_SizeChanged" IsSwipeEnabled="False" HorizontalOptions="FillAndExpand"  Position="{Binding CurrentStepPosition}">
                         <!--<cv:CarouselViewControl.ItemsSource>
                         <x:Array Type="{x:Type View}">
                             <controls:Step1View/>
@@ -29,7 +29,7 @@
                     </cv:CarouselViewControl>
                 </Frame>
 
-                <StackLayout x:Name="stepProcessFooter">
+                <StackLayout x:Name="stepProcessFooter" VerticalOptions="End">
                     <controls:StepProgress/>
                 </StackLayout>
 
@@ -59,7 +59,7 @@
 
         <!--</Grid>-->
         <Frame Grid.Row="2" Margin="-1,0,-1,-1" BorderColor="#11000000" HasShadow="True" Padding="10" IsVisible="{Binding IsShowStepButtons}" HorizontalOptions="FillAndExpand">
-            <Grid  HorizontalOptions="FillAndExpand" Margin="0,0,0,5">
+            <Grid  HorizontalOptions="FillAndExpand">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>

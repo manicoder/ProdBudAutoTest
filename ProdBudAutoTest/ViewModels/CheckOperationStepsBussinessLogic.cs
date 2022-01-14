@@ -19,7 +19,7 @@ namespace ProdBudAutoTest.ViewModels
                 if (step <= TotalSteps)
                 {
                     IsBusy = true;
-                    await Task.Delay(500);
+                    await Task.Delay(100);
                     IsBusy = false;
                 }
                 // SetStepProgress(step);

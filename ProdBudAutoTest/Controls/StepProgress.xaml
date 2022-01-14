@@ -4,15 +4,15 @@
              x:Class="ProdBudAutoTest.Controls.StepProgress">
     <ContentView.Content>
         <StackLayout>
-            <ListView SeparatorVisibility="None"
+            <ListView SeparatorVisibility="None" HasUnevenRows="True"
                            ItemsSource="{Binding}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <Frame HasShadow="False" CornerRadius="0" BorderColor="LightGray" Margin="0"  Padding="0" HorizontalOptions="FillAndExpand">
-                                <StackLayout Orientation="Horizontal" Margin="4,0,0,0" VerticalOptions="Center">
-                                    <Label Text="{Binding name}" Style="{StaticResource TitleNormal}" HorizontalOptions="Start"/>
-                                    <Label Text="{Binding Status}" Style="{StaticResource TitleNormal}" HorizontalOptions="Start"/>
+                                <StackLayout Orientation="Horizontal" Margin="5,2,2,2" VerticalOptions="Center">
+                                    <Label Text="{Binding name}" Style="{StaticResource TitleNormal2}" HorizontalOptions="Start"/>
+                                    <Label Text="{Binding Status}" Style="{StaticResource TitleNormal2}" HorizontalOptions="Start"/>
                                 </StackLayout>
                             </Frame>
                         </ViewCell>

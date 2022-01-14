@@ -1,7 +1,7 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
-using CarouselView.FormsPlugin.Android;
+using CarouselView.FormsPlugin.Droid;
 using Prism;
 using Prism.Ioc;
 

@@ -11,12 +11,12 @@ namespace ProdBudAutoTest.Views
 {
     public partial class CheckOperationPage : ContentPage
     {
-        List<ProcessStepControl> processView = null;
+        List<View> processView = null;
 
         public CheckOperationPage()
         {
             InitializeComponent();
-            processView = new List<ProcessStepControl>();
+            processView = new List<View>();
         }
 
         private void StepInitiliase()
@@ -44,6 +44,10 @@ namespace ProdBudAutoTest.Views
                 //   // VehicleInfoList.Add(new VehicleInfoModel() { TestType = step.chassis_api_pid, Desc = "MC2XXXX", Result = "Pass", IsPass = true });
 
                 //}
+            }
+            if (processView.Count > 0)
+            {
+                //processView.Add(new Step6View());
             }
         }
 
