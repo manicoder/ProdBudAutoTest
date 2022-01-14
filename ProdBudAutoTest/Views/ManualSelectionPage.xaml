@@ -27,11 +27,11 @@
                 <StackLayout Grid.Column="1" Spacing="5" HorizontalOptions="Start" VerticalOptions="Center">
                     <Label  Text="Manual Selection Mode" VerticalOptions="End" HorizontalOptions="Center" TextColor="White"
                    FontSize="18" Style="{StaticResource TitleBold}" Margin="5,0,0,0"/>
-                 </StackLayout>
+                </StackLayout>
             </Grid>
         </Grid>
 
-        <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#ffffff">
+        <Grid Padding="15" Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#ffffff">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -43,9 +43,9 @@
             <Picker Grid.Row="1" Title="Select Model" ItemsSource="{Binding SubModels}" SelectedItem="{Binding SelectedSubModel}"/>
             <Picker Grid.Row="2" Title="Select Sub-Model" ItemsSource="{Binding Years}" SelectedItem="{Binding SelectedYear}"/>
             <StackLayout Grid.Row="3">
-                <Label Text="{Binding SelectedSegment}"/>
-                <Label Text="{Binding SelectedModel}"/>
-                <Label Text="{Binding SelectedYear}"/>
+                <Label Text="{Binding SelectedSegment, StringFormat='{Segment: 0}'}"/>
+                <Label Text="{Binding SelectedSubModel, StringFormat='{Sub Model: 0}'}"/>
+                <Label Text="{Binding SelectedYear, StringFormat='{Year: 0}'}"/>
             </StackLayout>
             <!--<SearchBar Grid.Row="0" TextChanged="modelSearchBar_TextChanged" VerticalOptions="Start" x:Name="modelSearchBar" FontSize="16" Placeholder="Select Segment" SearchCommandParameter="Model" SearchButtonPressed="modelSearchBar_SearchButtonPressed"/>
 

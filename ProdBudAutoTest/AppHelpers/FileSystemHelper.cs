@@ -76,5 +76,14 @@ namespace Prodat.AppHelpers
             }
             return true;
         }
+        public void DeleteFile(string fileName)
+        {
+            if (IsFileExists(fileName))
+            {
+                var backingFile = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData), fileName);
+
+                File.Delete(backingFile);
+            }
+        }
     }
 }

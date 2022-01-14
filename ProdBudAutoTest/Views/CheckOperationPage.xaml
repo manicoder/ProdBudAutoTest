@@ -15,7 +15,7 @@
         <ScrollView Grid.Row="1" Padding="10" VerticalScrollBarVisibility="Default">
             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <Frame HorizontalOptions="FillAndExpand" HasShadow="False" SizeChanged="Frame_SizeChanged" BackgroundColor="Transparent" VerticalOptions="FillAndExpand" Padding="0">
-                    <cv:CarouselViewControl x:Name="crouselView" SizeChanged="crouselView_SizeChanged" IsSwipeEnabled="False" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Position="{Binding CurrentStepPosition}">
+                    <cv:CarouselViewControl x:Name="crouselView" HeightRequest="450" SizeChanged="crouselView_SizeChanged" IsSwipeEnabled="False" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Position="{Binding CurrentStepPosition}">
                         <!--<cv:CarouselViewControl.ItemsSource>
                         <x:Array Type="{x:Type View}">
                             <controls:Step1View/>
@@ -58,17 +58,18 @@
 
 
         <!--</Grid>-->
+        <Frame Grid.Row="2" Margin="-1,0,-1,-1" BorderColor="#11000000" HasShadow="True" Padding="10" IsVisible="{Binding IsShowStepButtons}" HorizontalOptions="FillAndExpand">
+            <Grid  HorizontalOptions="FillAndExpand" Margin="0,0,0,5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <!--IsEnabled="{Binding IsBusy,Converter={StaticResource BoolToReverseVisibilityConverter}}"-->
+                <Button Text="Continue >>"  Command="{Binding StepProgressCommand}" CommandParameter="1" FontFamily="FontExtraBold" HeightRequest="50" TextColor="#ffffff"  BackgroundColor="{StaticResource ButtonColor}" CornerRadius="25"/>
+                <Button Text="Abort" Command="{Binding GoHomePageCommand}" FontFamily="FontExtraBold" HeightRequest="50" TextColor="#ffffff" BackgroundColor="{StaticResource HeaderColor}" Grid.Column="1" CornerRadius="25"/>
 
-        <Grid  HorizontalOptions="FillAndExpand" Grid.Row="2" Margin="0,0,0,5" Padding="0,0,0,10" IsVisible="{Binding IsShowStepButtons}">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Button Text="Continue >>" IsEnabled="{Binding IsBusy,Converter={StaticResource BoolToReverseVisibilityConverter}}" Command="{Binding StepProgressCommand}" CommandParameter="1" FontFamily="FontExtraBold" HeightRequest="50" TextColor="#ffffff"  BackgroundColor="{StaticResource ButtonColor}" CornerRadius="25"/>
-            <Button Text="Abort" Command="{Binding GoHomePageCommand}" FontFamily="FontExtraBold" HeightRequest="50" TextColor="#ffffff" BackgroundColor="{StaticResource HeaderColor}" Grid.Column="1" CornerRadius="25"/>
-
-        </Grid>
-
+            </Grid>
+        </Frame>
         <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" Grid.RowSpan="2" HeightRequest="150" WidthRequest="150" HorizontalOptions="Center" VerticalOptions="Center"/>
 
     </Grid>

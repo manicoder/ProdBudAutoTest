@@ -155,7 +155,7 @@ namespace Prodat.Services
 
         private async Task<ModelsResponse> GetModelServiceData() {
             client = new HttpClient();
-            var response = client.GetAsync($"{BaseUrl}models/get-models").Result;
+            var response = client.GetAsync($"{BaseUrl}models/get-models/").Result;
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 string data = await response.Content.ReadAsStringAsync();

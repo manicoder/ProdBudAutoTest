@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Prodat.AppHelpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace ProdBudAutoTest.Controls
         public HeaderView()
         {
             InitializeComponent();
+            title1.Text = KeyStorage.Get("VIN");
         }
     }
 }

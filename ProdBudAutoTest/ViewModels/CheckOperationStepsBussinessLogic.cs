@@ -16,14 +16,39 @@ namespace ProdBudAutoTest.ViewModels
             {
                 var step = CurrentStepPosition + 2;
                 CurrentStepPosition += 1;
-                if (step <= 5)
+                if (step <= TotalSteps)
                 {
                     IsBusy = true;
-                    await Task.Delay(TimeSpan.FromSeconds(3));
+                    await Task.Delay(500);
                     IsBusy = false;
                 }
-                SetStepProgress(step);
+                // SetStepProgress(step);
             });
+        }
+
+        private int mTotalSteps;
+        public int TotalSteps
+        {
+            get { return mTotalSteps; }
+            set
+            {
+                mTotalSteps = value;
+                RaisePropertyChanged();
+            }
+        }
+        private int mCurrentStepPosition;
+        public int CurrentStepPosition
+        {
+            get { return mCurrentStepPosition; }
+            set
+            {
+                mCurrentStepPosition = value;
+                if (mCurrentStepPosition == TotalSteps)
+                {
+                    IsShowStepButtons = false;
+                }
+                RaisePropertyChanged();
+            }
         }
         private bool mIsStep1Pass;
         public bool IsStep1Pass

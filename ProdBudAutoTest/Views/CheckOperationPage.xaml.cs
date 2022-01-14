@@ -1,6 +1,7 @@
 ﻿using CarouselView.FormsPlugin.Abstractions;
 using ProdBudAutoTest.Controls;
 using ProdBudAutoTest.Models;
+using ProdBudAutoTest.ViewModels;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -20,10 +21,11 @@ namespace ProdBudAutoTest.Views
 
         private void StepInitiliase()
         {
+            var vm = this.BindingContext as CheckOperationPageViewModel;
             var currentProcess = Services.CurrentProcess.Instance.Proccess;
             if (currentProcess == null) return;
             var orderByProcess = currentProcess.station_process.OrderBy(x => x.priority);
-
+            vm.TotalSteps = orderByProcess.Count();
             stepProcessFooter.BindingContext = orderByProcess;
             foreach (var process in orderByProcess)
             {

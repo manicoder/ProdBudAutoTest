@@ -55,6 +55,8 @@ namespace ProdBudAutoTest.ViewModels
             {
                 KeyStorage.Remove("token");
                 KeyStorage.Remove("firstName");
+                FileSystemHelper.Instance.DeleteFile(AppConstants.ModelsFilename);
+                FileSystemHelper.Instance.DeleteFile(AppConstants.StationsFileName);
                 NavigationService.NavigateAsync("../LoginPage");
             });
             ToggleMenuCommand = new Command(() =>
@@ -114,44 +116,56 @@ namespace ProdBudAutoTest.ViewModels
                 await Task.Delay(500);
                 var token = KeyStorage.Get("token");
                 var vinResponse = await this._apiServices.GetVinNumberAsync(token, this.VinId);
-                var year = vinResponse.results.FirstOrDefault().model_year;
-                if (!string.IsNullOrEmpty(Convert.ToString(year)))
+                if (vinResponse != null && vinResponse.results != null && vinResponse.results.Count() > 0)
                 {
-                    KeyStorage.Set("year", Convert.ToString(year));
-                    var id = KeyStorage.Get("ID");
-                    var allStations = await this._apiServices.GetStationDataAsync();
-                    foreach (var item in allStations.results)
+                    var year = vinResponse.results.FirstOrDefault().model_year;
+                    if (!string.IsNullOrEmpty(Convert.ToString(year)))
                     {
-                        if (item.id == Convert.ToInt32(id))
+                        KeyStorage.Set("year", Convert.ToString(year));
+                        var id = KeyStorage.Get("ID");
+                        var allStations = await this._apiServices.GetStationDataAsync();
+                        foreach (var item in allStations.results)
                         {
-                            foreach (var pro in item.process.sp_process)
+                            if (item.id == Convert.ToInt32(id))
                             {
-                                if (pro.year == Convert.ToInt32(year))
+                                foreach (var pro in item.process.sp_process)
                                 {
-                                    Services.CurrentProcess.Instance.Proccess = pro;
-                                    break;
+                                    if (pro.year == Convert.ToInt32(year))
+                                    {
+                                        Services.CurrentProcess.Instance.Proccess = pro;
+                                        ConfirmManualPopup();
+                                        break;
+                                    }
                                 }
                             }
-                        }
 
+                        }
+                        /*
+                          for i in self.process_data:
+                    if str(i["id"]) == str(self.station_id):
+                        for j in i["process"]["sp_process"]:
+                            if str(j["year"]) == str(self.year_id):
+                                self.station_process = j['station_process']
+                                self.isStationProcessSuccess = True
+                                print("got process data")
+                         */
                     }
-                    /*
-                      for i in self.process_data:
-                if str(i["id"]) == str(self.station_id):
-                    for j in i["process"]["sp_process"]:
-                        if str(j["year"]) == str(self.year_id):
-                            self.station_process = j['station_process']
-                            self.isStationProcessSuccess = True
-                            print("got process data")
-                     */
+                }
+                else
+                {
+                    IsBusy = false;
+                    PageDialogService.DisplayAlertAsync("Error", "Not Found", "OK");
+                    return;
                 }
             }
             catch (Exception ex)
             {
                 IsBusy = false;
+                PageDialogService.DisplayAlertAsync("Error", ex.Message, "OK");
+                return;
             }
             IsBusy = false;
-            ConfirmManualPopup();
+           
 
         }
 
@@ -174,6 +188,10 @@ namespace ProdBudAutoTest.ViewModels
             set
             {
                 mVinId = value;
+                if (!string.IsNullOrEmpty(value))
+                {
+                    KeyStorage.Set("VIN", VinId);
+                }
                 PopupTitle = "Please confirm if VIN ID :" + value + " is related to Model";
                 RaisePropertyChanged();
             }

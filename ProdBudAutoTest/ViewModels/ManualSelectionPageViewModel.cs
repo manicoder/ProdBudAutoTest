@@ -23,14 +23,24 @@ namespace ProdBudAutoTest.ViewModels
         public ManualSelectionPageViewModel(INavigationService navigationService, IPageDialogService pageDialogService, IApiServices apiServices) : base(navigationService, pageDialogService)
         {
             _apiServices = apiServices;
-           results = new List<ModelResult>();
+            results = new List<ModelResult>();
 
             string[] segments = { "BSIII", "BSIV", "BSVI", "GENRIC" };
             Segments = new ObservableCollection<string>(segments);
 
-            ManualSubmitCommand = new Command((obj) =>
+            ManualSubmitCommand = new Command(async (obj) =>
             {
-                NavigationService.NavigateAsync("CheckOperationPage");
+                if (!string.IsNullOrEmpty(SelectedYear))
+                {
+                    if (await GoToNextPgae())
+                    {
+                        NavigationService.NavigateAsync("CheckOperationPage");
+                    }
+                    else
+                    {
+                        PageDialogService.DisplayAlertAsync("Not Found", "Model not found!", "OK");
+                    }
+                }                
             });
 
         }
@@ -43,6 +53,7 @@ namespace ProdBudAutoTest.ViewModels
             {
                 mSelectedSegment = value;
                 SubModels = new ObservableCollection<string>(results.Select(l => l.name).Where(x => x.Contains(SelectedSegment)));
+                Years = new ObservableCollection<string>();
                 RaisePropertyChanged();
             }
         }
@@ -54,11 +65,15 @@ namespace ProdBudAutoTest.ViewModels
             set
             {
                 mSelectedSubModel = value;
-                //        List<SubModel>
                 var fileteredSubModels = results.Where(x => x.name.Equals(SelectedSubModel)).FirstOrDefault();
-                Years = new ObservableCollection<int>( fileteredSubModels.sub_models.Select(x=>x.id));
-                //var years = results.Select(l => l.name == SelectedSubModel).;
-
+                if (fileteredSubModels != null)
+                {
+                    Years = new ObservableCollection<string>();
+                    foreach (var item in fileteredSubModels.sub_models)
+                    {
+                        Years.Add(Convert.ToString(item.id));
+                    }
+                }
                 RaisePropertyChanged();
             }
         }
@@ -99,8 +114,8 @@ namespace ProdBudAutoTest.ViewModels
         }
 
 
-        private ObservableCollection<int> mYears;
-        public ObservableCollection<int> Years
+        private ObservableCollection<string> mYears;
+        public ObservableCollection<string> Years
         {
             get { return mYears; }
             set
@@ -110,21 +125,6 @@ namespace ProdBudAutoTest.ViewModels
             }
         }
 
-        
-
-        List<string> ModelList = new List<string>
-            {
-               "Model 1", "Model 2", "Model 3", "Model 4", "Model 5", "Model 6",
-            };
-        List<string> SubModelList = new List<string>
-            {
-                "Sub Model 1","Sub Model 2","Sub Model 3","Sub Model 4","Sub Model 5","Sub Model 6",
-            };
-        List<string> ModelYearList = new List<string>
-            {
-                "Year 1","Year 2","Year 3","Year 4","Year 5","Year 6"
-            };
-
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
@@ -133,12 +133,13 @@ namespace ProdBudAutoTest.ViewModels
         }
         public ICommand ManualSubmitCommand { get; set; }
 
-        public async void GoToNextPgae()
+        public async Task<bool> GoToNextPgae()
         {
             IsBusy = true;
+            bool isFound = false;
             try
             {
-                var year = ""; //selectedyesr from submodel  
+                var year = this.SelectedYear;
                 if (!string.IsNullOrEmpty(Convert.ToString(year)))
                 {
                     var id = KeyStorage.Get("ID");
@@ -153,12 +154,13 @@ namespace ProdBudAutoTest.ViewModels
                                 if (pro.year == Convert.ToInt32(year))
                                 {
                                     Services.CurrentProcess.Instance.Proccess = pro;
+                                    isFound = true;
                                     break;
                                 }
                             }
                         }
 
-                    } 
+                    }
                 }
             }
             catch (Exception ex)
@@ -166,6 +168,7 @@ namespace ProdBudAutoTest.ViewModels
                 IsBusy = false;
             }
             IsBusy = false;
+            return false;
         }
     }
 }
