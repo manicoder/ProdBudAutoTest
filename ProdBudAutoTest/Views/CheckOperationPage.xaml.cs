@@ -47,7 +47,9 @@ namespace ProdBudAutoTest.Views
             }
             if (processView.Count > 0)
             {
-                //processView.Add(new Step6View());
+                var finalStep = new Step6View();
+                finalStep.BindingContext = orderByProcess;
+                processView.Add(finalStep);
             }
         }
 

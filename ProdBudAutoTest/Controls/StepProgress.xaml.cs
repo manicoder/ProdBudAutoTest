@@ -15,6 +15,13 @@ namespace ProdBudAutoTest.Controls
         public StepProgress()
         {
             InitializeComponent();
+            this.BindingContextChanged += StepProgress_BindingContextChanged;
+        }
+
+        private void StepProgress_BindingContextChanged(object sender, EventArgs e)
+        {
+            var a = sender as View;
+            var b = a.BindingContext;
         }
     }
 }

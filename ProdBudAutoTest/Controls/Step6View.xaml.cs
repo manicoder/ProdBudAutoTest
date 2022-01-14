@@ -16,5 +16,10 @@ namespace ProdBudAutoTest.Controls
         {
             InitializeComponent();
         }
+
+        private void ListView_BindingContextChanged(object sender, EventArgs e)
+        {
+            var b = (sender as ListView).BindingContext;
+        }
     }
 }

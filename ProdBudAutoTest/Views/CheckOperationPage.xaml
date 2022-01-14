@@ -29,8 +29,8 @@
                     </cv:CarouselViewControl>
                 </Frame>
 
-                <StackLayout x:Name="stepProcessFooter" VerticalOptions="End">
-                    <controls:StepProgress/>
+                <StackLayout IsVisible="{Binding FinalStepVisible}" VerticalOptions="End">
+                    <controls:StepProgress x:Name="stepProcessFooter"/>
                 </StackLayout>
 
             </StackLayout>

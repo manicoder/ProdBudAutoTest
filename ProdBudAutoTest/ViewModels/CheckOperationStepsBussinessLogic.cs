@@ -12,6 +12,7 @@ namespace ProdBudAutoTest.ViewModels
         private async void StepsInitCommand()
         {
             SetStepProgress(1);
+            FinalStepVisible = true;
             StepProgressCommand = new Command(async () =>
             {
                 var step = CurrentStepPosition + 2;
@@ -46,10 +47,23 @@ namespace ProdBudAutoTest.ViewModels
                 if (mCurrentStepPosition == TotalSteps)
                 {
                     IsShowStepButtons = false;
+                    FinalStepVisible = false;
                 }
                 RaisePropertyChanged();
             }
         }
+
+        private bool mFinalStepVisible;
+        public bool FinalStepVisible
+        {
+            get { return mFinalStepVisible; }
+            set
+            {
+                mFinalStepVisible = value;
+                RaisePropertyChanged();
+            }
+        }
+
         private bool mIsStep1Pass;
         public bool IsStep1Pass
         {
